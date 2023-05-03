@@ -42,4 +42,24 @@ public class CommitService {
 
     }
 
+    public Commit findCommitFromRepo(String owner, String repo, String commitId) {
+
+        //https://api.github.com/repos/fdnando15/Proyecto-AISS/commits/339e7b1
+
+        String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits/" + commitId;
+
+        Commit commit = null;
+
+        try {
+            commit = restTemplate.getForObject(url, Commit.class);
+
+        } catch (RestClientException ex) {
+
+            System.out.println("Error while retrieving commit with id: " + commitId + ":"
+                    + ex.getLocalizedMessage());
+        }
+
+        return commit;
+    }
+
 }

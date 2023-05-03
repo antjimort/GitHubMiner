@@ -28,4 +28,17 @@ class CommitServiceTest {
         System.out.println(commits);
 
     }
+
+    @Test
+    @DisplayName("Find commit from an existing repo")
+    void findCommitFromRepo() {
+
+        String owner = "fdnando15";
+        String repo = "Proyecto-AISS";
+        String commitId = "339e7b1";
+
+        Commit commit = service.findCommitFromRepo(owner, repo, commitId);
+        assertTrue(!commit.equals(null), "The commit is null");
+        System.out.println(commit);
+    }
 }

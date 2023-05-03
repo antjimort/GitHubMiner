@@ -138,6 +138,22 @@ public class Commit {
         this.parents = parents;
     }
 
+    @Override
+    public String toString() {
+        return "Commit{" +
+                "sha='" + sha + '\'' +
+                ", nodeId='" + nodeId + '\'' +
+                ", commit=" + commit +
+                ", url='" + url + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", commentsUrl='" + commentsUrl + '\'' +
+                ", author=" + author +
+                ", committer=" + committer +
+                ", parents=" + parents +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
