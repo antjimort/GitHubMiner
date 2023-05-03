@@ -1,6 +1,6 @@
 package aiss.github.service;
 
-import aiss.github.Commit;
+import aiss.github.model.Commit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

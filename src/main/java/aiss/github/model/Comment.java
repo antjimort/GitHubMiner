@@ -186,4 +186,22 @@ public class Comment {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "url='" + url + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", issueUrl='" + issueUrl + '\'' +
+                ", id=" + id +
+                ", nodeId='" + nodeId + '\'' +
+                ", user=" + user +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", authorAssociation='" + authorAssociation + '\'' +
+                ", body='" + body + '\'' +
+                ", reactions=" + reactions +
+                ", performedViaGithubApp=" + performedViaGithubApp +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
