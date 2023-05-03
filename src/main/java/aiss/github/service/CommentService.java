@@ -52,17 +52,17 @@ public class CommentService {
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + "comments/" + commentId;
 
-        Commit comment = null;
+        Comment comment = null;
 
         try {
-            commit = restTemplate.getForObject(url, Commit.class);
+            comment = restTemplate.getForObject(url, Comment.class);
 
         } catch (RestClientException ex) {
 
-            System.out.println("Error while retrieving commit with id: " + commitId + ":"
+            System.out.println("Error while retrieving commit with id: " + commentId + ":"
                     + ex.getLocalizedMessage());
         }
 
-        return commit;
+        return comment;
     }
 }
