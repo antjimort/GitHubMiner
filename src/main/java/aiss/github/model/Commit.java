@@ -1,10 +1,15 @@
 
-package aiss.github;
+package aiss.github.model;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
+
+import aiss.github.model.Author__1;
+import aiss.github.model.Commit__1;
+import aiss.github.model.Committer__1;
+import aiss.github.model.Parent;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;

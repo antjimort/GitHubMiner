@@ -1,5 +1,5 @@
 
-package aiss.github;
+package aiss.github.model;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
