@@ -434,4 +434,42 @@ public class Issue {
         this.additionalProperties.put(name, value);
     }
 
+
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "url='" + url + '\'' +
+                ", repositoryUrl='" + repositoryUrl + '\'' +
+                ", labelsUrl='" + labelsUrl + '\'' +
+                ", commentsUrl='" + commentsUrl + '\'' +
+                ", eventsUrl='" + eventsUrl + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", id=" + id +
+                ", nodeId='" + nodeId + '\'' +
+                ", number=" + number +
+                ", title='" + title + '\'' +
+                ", user=" + user +
+                ", labels=" + labels +
+                ", state='" + state + '\'' +
+                ", locked=" + locked +
+                ", assignee=" + assignee +
+                ", assignees=" + assignees +
+                ", milestone=" + milestone +
+                ", comments=" + comments +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", closedAt=" + closedAt +
+                ", authorAssociation='" + authorAssociation + '\'' +
+                ", activeLockReason=" + activeLockReason +
+                ", draft=" + draft +
+                ", pullRequest=" + pullRequest +
+                ", body='" + body + '\'' +
+                ", closedBy=" + closedBy +
+                ", reactions=" + reactions +
+                ", timelineUrl='" + timelineUrl + '\'' +
+                ", performedViaGithubApp=" + performedViaGithubApp +
+                ", stateReason=" + stateReason +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
