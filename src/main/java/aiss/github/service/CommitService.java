@@ -14,7 +14,7 @@ import java.util.List;
 public class CommitService {
 
     @Autowired
-    RestTemplate restTemplate; // Para hacer las llamadas a la api
+    RestTemplate restTemplate;
 
     String token = "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";
     String baseUrl = "https://api.github.com";
@@ -22,7 +22,6 @@ public class CommitService {
     public List<Commit> findAllCommitsFromRepo(String owner, String repo) {
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits";
-        //https://api.github.com/repos/DuGuQiuBai/Java/commits
 
         List<Commit> commits = null;
 
@@ -43,8 +42,6 @@ public class CommitService {
     }
 
     public Commit findCommitFromRepo(String owner, String repo, String commitId) {
-
-        //https://api.github.com/repos/fdnando15/Proyecto-AISS/commits/339e7b1
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits/" + commitId;
 
