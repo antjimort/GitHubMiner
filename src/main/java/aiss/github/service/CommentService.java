@@ -16,14 +16,10 @@ public class CommentService {
 
 
     @Autowired
-    RestTemplate restTemplate; // Para hacer las llamadas a la api
-
-    String token = "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";
+    RestTemplate restTemplate;
     String baseUrl = "https://api.github.com";
 
     public List<Comment> findAllCommentsFromRepo(String owner, String repo){
-
-        //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/comments
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + "comments";
 
@@ -46,10 +42,6 @@ public class CommentService {
 
     public Comment findCommentFromIssue(String owner, String repo, String commentId){
 
-
-        //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/comments/1124218931
-
-
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + "comments/" + commentId;
 
         Comment comment = null;
@@ -67,8 +59,6 @@ public class CommentService {
     }
 
     public List<Comment> findAllCommentsFromIssue(String owner, String repo, String issueId){
-
-        //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/48/comments
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + issueId + "/comments";
 

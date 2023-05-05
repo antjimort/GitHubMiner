@@ -15,8 +15,6 @@ public class CommitService {
 
     @Autowired
     RestTemplate restTemplate;
-
-    String token = "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";
     String baseUrl = "https://api.github.com";
 
     public List<Commit> findAllCommitsFromRepo(String owner, String repo) {

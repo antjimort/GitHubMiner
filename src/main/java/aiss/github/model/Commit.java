@@ -10,25 +10,10 @@ import aiss.github.model.Author__1;
 import aiss.github.model.Commit__1;
 import aiss.github.model.Committer__1;
 import aiss.github.model.Parent;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "sha",
-    "node_id",
-    "commit",
-    "url",
-    "html_url",
-    "comments_url",
-    "author",
-    "committer",
-    "parents"
-})
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 @Generated("jsonschema2pojo")
 public class Commit {
 
