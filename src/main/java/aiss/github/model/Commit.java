@@ -1,157 +1,157 @@
 
 package aiss.github.model;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Generated;
 
-import aiss.github.model.Author__1;
-import aiss.github.model.Commit__1;
-import aiss.github.model.Committer__1;
-import aiss.github.model.Parent;
-import com.fasterxml.jackson.annotation.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 @Generated("jsonschema2pojo")
 public class Commit {
 
-    @JsonProperty("sha")
-    private String sha;
-    @JsonProperty("node_id")
-    private String nodeId;
-    @JsonProperty("commit")
-    private Commit__1 commit;
-    @JsonProperty("url")
-    private String url;
-    @JsonProperty("html_url")
-    private String htmlUrl;
-    @JsonProperty("comments_url")
-    private String commentsUrl;
-    @JsonProperty("author")
-    private Author__1 author;
-    @JsonProperty("committer")
-    private Committer__1 committer;
-    @JsonProperty("parents")
-    private List<Parent> parents;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+    @JsonProperty("id")
+    private String id;
 
-    @JsonProperty("sha")
-    public String getSha() {
-        return sha;
+    @JsonProperty("title")
+    private String title;
+
+    @JsonProperty("message")
+    private String message;
+
+    @JsonProperty("author_name")
+    private String author_name;
+
+    @JsonProperty("author_email")
+    private String author_email;
+
+    @JsonProperty("authored_date")
+    private String authored_date;
+
+    @JsonProperty("committer_name")
+    private String committer_name;
+
+    @JsonProperty("committer_email")
+    private String committer_email;
+
+    @JsonProperty("committed_date")
+    private String committed_date;
+
+    @JsonProperty("commit_info")
+    private CommitInfo commitInfo;
+    @JsonProperty("web_url")
+    private String webUrl;
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
     }
 
-    @JsonProperty("sha")
-    public void setSha(String sha) {
-        this.sha = sha;
+    @JsonProperty("id")
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @JsonProperty("node_id")
-    public String getNodeId() {
-        return nodeId;
+    @JsonProperty("commit_info")
+    public CommitInfo getCommitInfo() {
+        return commitInfo;
     }
 
-    @JsonProperty("node_id")
-    public void setNodeId(String nodeId) {
-        this.nodeId = nodeId;
+    @JsonProperty("commit_info")
+    public void setCommitInfo(CommitInfo commitInfo) {
+        this.commitInfo = commitInfo;
     }
 
-    @JsonProperty("commit")
-    public Commit__1 getCommit() {
-        return commit;
+    @JsonProperty("web_url")
+    public String getWebUrl() {
+        return webUrl;
     }
 
-    @JsonProperty("commit")
-    public void setCommit(Commit__1 commit) {
-        this.commit = commit;
+    @JsonProperty("web_url")
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
-    @JsonProperty("url")
-    public String getUrl() {
-        return url;
+    public String getTitle() {
+        return commitInfo.getMessage();
     }
 
-    @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @JsonProperty("html_url")
-    public String getHtmlUrl() {
-        return htmlUrl;
+    public String getMessage() {
+        return commitInfo.getMessage();
     }
 
-    @JsonProperty("html_url")
-    public void setHtmlUrl(String htmlUrl) {
-        this.htmlUrl = htmlUrl;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    @JsonProperty("comments_url")
-    public String getCommentsUrl() {
-        return commentsUrl;
+    public String getAuthor_name() {
+        return commitInfo.getAuthor().getName();
     }
 
-    @JsonProperty("comments_url")
-    public void setCommentsUrl(String commentsUrl) {
-        this.commentsUrl = commentsUrl;
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
     }
 
-    @JsonProperty("author")
-    public Author__1 getAuthor() {
-        return author;
+    public String getAuthor_email() {
+        return commitInfo.getAuthor().getEmail();
     }
 
-    @JsonProperty("author")
-    public void setAuthor(Author__1 author) {
-        this.author = author;
+    public void setAuthor_email(String author_email) {
+        this.author_email = author_email;
     }
 
-    @JsonProperty("committer")
-    public Committer__1 getCommitter() {
-        return committer;
+    public String getAuthored_date() {
+        return commitInfo.getAuthor().getDate();
     }
 
-    @JsonProperty("committer")
-    public void setCommitter(Committer__1 committer) {
-        this.committer = committer;
+    public void setAuthored_date(String authored_date) {
+        this.authored_date = authored_date;
     }
 
-    @JsonProperty("parents")
-    public List<Parent> getParents() {
-        return parents;
+    public String getCommitter_name() {
+        return commitInfo.getCommitter().getName();
     }
 
-    @JsonProperty("parents")
-    public void setParents(List<Parent> parents) {
-        this.parents = parents;
+    public void setCommitter_name(String committer_name) {
+        this.committer_name = committer_name;
+    }
+
+    public String getCommitter_email() {
+        return commitInfo.getCommitter().getEmail();
+    }
+
+    public void setCommitter_email(String committer_email) {
+        this.committer_email = committer_email;
+    }
+
+    public String getCommitted_date() {
+        return commitInfo.getCommitter().getDate();
+    }
+
+    public void setCommitted_date(String committed_date) {
+        this.committed_date = committed_date;
     }
 
     @Override
     public String toString() {
         return "Commit{" +
-                "sha='" + sha + '\'' +
-                ", nodeId='" + nodeId + '\'' +
-                ", commit=" + commit +
-                ", url='" + url + '\'' +
-                ", htmlUrl='" + htmlUrl + '\'' +
-                ", commentsUrl='" + commentsUrl + '\'' +
-                ", author=" + author +
-                ", committer=" + committer +
-                ", parents=" + parents +
-                ", additionalProperties=" + additionalProperties +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", message='" + message + '\'' +
+                ", author_name='" + author_name + '\'' +
+                ", author_email='" + author_email + '\'' +
+                ", authored_date='" + authored_date + '\'' +
+                ", committer_name='" + committer_name + '\'' +
+                ", committer_email='" + committer_email + '\'' +
+                ", committed_date='" + committed_date + '\'' +
+                ", webUrl='" + webUrl + '\'' +
                 '}';
     }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

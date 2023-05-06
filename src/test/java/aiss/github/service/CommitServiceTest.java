@@ -17,7 +17,7 @@ class CommitServiceTest {
     CommitService service;
 
     @Test
-    @DisplayName("Find all commit from an existing repo")
+    @DisplayName("Find all commits from an existing repo")
     void findAllCommitsFromRepo() {
 
         String owner = "DuGuQiuBai";
