@@ -19,7 +19,7 @@ public class IssueService {
     @Autowired
     RestTemplate restTemplate;
 
-    String token = "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";
+    String token = "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";
     String baseUrl = "https://api.github.com";
     HttpHeaders headers = new HttpHeaders();
 

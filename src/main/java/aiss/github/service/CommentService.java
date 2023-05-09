@@ -1,7 +1,6 @@
 package aiss.github.service;
 
 import aiss.github.model.Comment;
-import aiss.github.model.Commit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;

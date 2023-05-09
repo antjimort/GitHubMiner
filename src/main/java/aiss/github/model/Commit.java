@@ -1,157 +1,237 @@
 
 package aiss.github.model;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Generated;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "sha",
+    "node_id",
+    "commit",
+    "url",
+    "html_url",
+    "comments_url",
+    "author",
+    "committer",
+    "parents",
+    "stats",
+    "files"
+})
 @Generated("jsonschema2pojo")
 public class Commit {
 
-    @JsonProperty("id")
-    private String id;
+    @JsonProperty("sha")
+    private String sha;
+    @JsonProperty("node_id")
+    private String nodeId;
+    @JsonProperty("commit")
+    private Commit__1 commit;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("html_url")
+    private String htmlUrl;
+    @JsonProperty("comments_url")
+    private String commentsUrl;
+    @JsonProperty("author")
+    private Author__1 author;
+    @JsonProperty("committer")
+    private Committer__1 committer;
+    @JsonProperty("parents")
+    private List<Parent> parents;
+    @JsonProperty("stats")
+    private Stats stats;
+    @JsonProperty("files")
+    private List<File> files;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("title")
-    private String title;
-
-    @JsonProperty("message")
-    private String message;
-
-    @JsonProperty("author_name")
-    private String author_name;
-
-    @JsonProperty("author_email")
-    private String author_email;
-
-    @JsonProperty("authored_date")
-    private String authored_date;
-
-    @JsonProperty("committer_name")
-    private String committer_name;
-
-    @JsonProperty("committer_email")
-    private String committer_email;
-
-    @JsonProperty("committed_date")
-    private String committed_date;
-
-    @JsonProperty("commit_info")
-    private CommitInfo commitInfo;
-    @JsonProperty("web_url")
-    private String webUrl;
-
-    @JsonProperty("id")
-    public String getId() {
-        return id;
+    @JsonProperty("sha")
+    public String getSha() {
+        return sha;
     }
 
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
+    @JsonProperty("sha")
+    public void setSha(String sha) {
+        this.sha = sha;
     }
 
-    @JsonProperty("commit_info")
-    public CommitInfo getCommitInfo() {
-        return commitInfo;
+    @JsonProperty("node_id")
+    public String getNodeId() {
+        return nodeId;
     }
 
-    @JsonProperty("commit_info")
-    public void setCommitInfo(CommitInfo commitInfo) {
-        this.commitInfo = commitInfo;
+    @JsonProperty("node_id")
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
     }
 
-    @JsonProperty("web_url")
-    public String getWebUrl() {
-        return webUrl;
+    @JsonProperty("commit")
+    public Commit__1 getCommit() {
+        return commit;
     }
 
-    @JsonProperty("web_url")
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
+    @JsonProperty("commit")
+    public void setCommit(Commit__1 commit) {
+        this.commit = commit;
     }
 
-    public String getTitle() {
-        return commitInfo.getMessage();
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getMessage() {
-        return commitInfo.getMessage();
+    @JsonProperty("html_url")
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    @JsonProperty("html_url")
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl;
     }
 
-    public String getAuthor_name() {
-        return commitInfo.getAuthor().getName();
+    @JsonProperty("comments_url")
+    public String getCommentsUrl() {
+        return commentsUrl;
     }
 
-    public void setAuthor_name(String author_name) {
-        this.author_name = author_name;
+    @JsonProperty("comments_url")
+    public void setCommentsUrl(String commentsUrl) {
+        this.commentsUrl = commentsUrl;
     }
 
-    public String getAuthor_email() {
-        return commitInfo.getAuthor().getEmail();
+    @JsonProperty("author")
+    public Author__1 getAuthor() {
+        return author;
     }
 
-    public void setAuthor_email(String author_email) {
-        this.author_email = author_email;
+    @JsonProperty("author")
+    public void setAuthor(Author__1 author) {
+        this.author = author;
     }
 
-    public String getAuthored_date() {
-        return commitInfo.getAuthor().getDate();
+    @JsonProperty("committer")
+    public Committer__1 getCommitter() {
+        return committer;
     }
 
-    public void setAuthored_date(String authored_date) {
-        this.authored_date = authored_date;
+    @JsonProperty("committer")
+    public void setCommitter(Committer__1 committer) {
+        this.committer = committer;
     }
 
-    public String getCommitter_name() {
-        return commitInfo.getCommitter().getName();
+    @JsonProperty("parents")
+    public List<Parent> getParents() {
+        return parents;
     }
 
-    public void setCommitter_name(String committer_name) {
-        this.committer_name = committer_name;
+    @JsonProperty("parents")
+    public void setParents(List<Parent> parents) {
+        this.parents = parents;
     }
 
-    public String getCommitter_email() {
-        return commitInfo.getCommitter().getEmail();
+    @JsonProperty("stats")
+    public Stats getStats() {
+        return stats;
     }
 
-    public void setCommitter_email(String committer_email) {
-        this.committer_email = committer_email;
+    @JsonProperty("stats")
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 
-    public String getCommitted_date() {
-        return commitInfo.getCommitter().getDate();
+    @JsonProperty("files")
+    public List<File> getFiles() {
+        return files;
     }
 
-    public void setCommitted_date(String committed_date) {
-        this.committed_date = committed_date;
+    @JsonProperty("files")
+    public void setFiles(List<File> files) {
+        this.files = files;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
     @Override
     public String toString() {
-        return "Commit{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", message='" + message + '\'' +
-                ", author_name='" + author_name + '\'' +
-                ", author_email='" + author_email + '\'' +
-                ", authored_date='" + authored_date + '\'' +
-                ", committer_name='" + committer_name + '\'' +
-                ", committer_email='" + committer_email + '\'' +
-                ", committed_date='" + committed_date + '\'' +
-                ", webUrl='" + webUrl + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(Commit.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("sha");
+        sb.append('=');
+        sb.append(((this.sha == null)?"<null>":this.sha));
+        sb.append(',');
+        sb.append("nodeId");
+        sb.append('=');
+        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
+        sb.append(',');
+        sb.append("commit");
+        sb.append('=');
+        sb.append(((this.commit == null)?"<null>":this.commit));
+        sb.append(',');
+        sb.append("url");
+        sb.append('=');
+        sb.append(((this.url == null)?"<null>":this.url));
+        sb.append(',');
+        sb.append("htmlUrl");
+        sb.append('=');
+        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
+        sb.append(',');
+        sb.append("commentsUrl");
+        sb.append('=');
+        sb.append(((this.commentsUrl == null)?"<null>":this.commentsUrl));
+        sb.append(',');
+        sb.append("author");
+        sb.append('=');
+        sb.append(((this.author == null)?"<null>":this.author));
+        sb.append(',');
+        sb.append("committer");
+        sb.append('=');
+        sb.append(((this.committer == null)?"<null>":this.committer));
+        sb.append(',');
+        sb.append("parents");
+        sb.append('=');
+        sb.append(((this.parents == null)?"<null>":this.parents));
+        sb.append(',');
+        sb.append("stats");
+        sb.append('=');
+        sb.append(((this.stats == null)?"<null>":this.stats));
+        sb.append(',');
+        sb.append("files");
+        sb.append('=');
+        sb.append(((this.files == null)?"<null>":this.files));
+        sb.append(',');
+        sb.append("additionalProperties");
+        sb.append('=');
+        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(',');
+        if (sb.charAt((sb.length()- 1)) == ',') {
+            sb.setCharAt((sb.length()- 1), ']');
+        } else {
+            sb.append(']');
+        }
+        return sb.toString();
     }
+
 }

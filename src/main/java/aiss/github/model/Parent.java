@@ -13,50 +13,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "name",
-    "email",
-    "date"
+    "sha",
+    "url",
+    "html_url"
 })
 @Generated("jsonschema2pojo")
-public class Author {
+public class Parent {
 
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("date")
-    private String date;
+    @JsonProperty("sha")
+    private String sha;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("html_url")
+    private String htmlUrl;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("sha")
+    public String getSha() {
+        return sha;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("sha")
+    public void setSha(String sha) {
+        this.sha = sha;
     }
 
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @JsonProperty("date")
-    public String getDate() {
-        return date;
+    @JsonProperty("html_url")
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
-    @JsonProperty("date")
-    public void setDate(String date) {
-        this.date = date;
+    @JsonProperty("html_url")
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl;
     }
 
     @JsonAnyGetter
@@ -72,18 +72,18 @@ public class Author {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("name");
+        sb.append(Parent.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("sha");
         sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
+        sb.append(((this.sha == null)?"<null>":this.sha));
         sb.append(',');
-        sb.append("email");
+        sb.append("url");
         sb.append('=');
-        sb.append(((this.email == null)?"<null>":this.email));
+        sb.append(((this.url == null)?"<null>":this.url));
         sb.append(',');
-        sb.append("date");
+        sb.append("htmlUrl");
         sb.append('=');
-        sb.append(((this.date == null)?"<null>":this.date));
+        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

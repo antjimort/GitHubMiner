@@ -13,21 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "key",
     "name",
-    "email",
-    "date"
+    "spdx_id",
+    "url",
+    "node_id"
 })
 @Generated("jsonschema2pojo")
-public class Author {
+public class License {
 
+    @JsonProperty("key")
+    private String key;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("date")
-    private String date;
+    @JsonProperty("spdx_id")
+    private String spdxId;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("node_id")
+    private String nodeId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+
+    @JsonProperty("key")
+    public String getKey() {
+        return key;
+    }
+
+    @JsonProperty("key")
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     @JsonProperty("name")
     public String getName() {
@@ -39,24 +55,34 @@ public class Author {
         this.name = name;
     }
 
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
+    @JsonProperty("spdx_id")
+    public String getSpdxId() {
+        return spdxId;
     }
 
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
+    @JsonProperty("spdx_id")
+    public void setSpdxId(String spdxId) {
+        this.spdxId = spdxId;
     }
 
-    @JsonProperty("date")
-    public String getDate() {
-        return date;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("date")
-    public void setDate(String date) {
-        this.date = date;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @JsonProperty("node_id")
+    public String getNodeId() {
+        return nodeId;
+    }
+
+    @JsonProperty("node_id")
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
     }
 
     @JsonAnyGetter
@@ -72,18 +98,26 @@ public class Author {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(License.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("key");
+        sb.append('=');
+        sb.append(((this.key == null)?"<null>":this.key));
+        sb.append(',');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
         sb.append(',');
-        sb.append("email");
+        sb.append("spdxId");
         sb.append('=');
-        sb.append(((this.email == null)?"<null>":this.email));
+        sb.append(((this.spdxId == null)?"<null>":this.spdxId));
         sb.append(',');
-        sb.append("date");
+        sb.append("url");
         sb.append('=');
-        sb.append(((this.date == null)?"<null>":this.date));
+        sb.append(((this.url == null)?"<null>":this.url));
+        sb.append(',');
+        sb.append("nodeId");
+        sb.append('=');
+        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

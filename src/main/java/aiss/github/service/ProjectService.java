@@ -16,7 +16,12 @@ import java.util.List;
 public class ProjectService {
     @Autowired
     RestTemplate restTemplate;
-    String token = "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";
+    @Autowired
+    CommitService commitService;
+    @Autowired
+    IssueService issueService;
+
+    String token = "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";
     String baseUrl = "https://api.github.com";
     HttpHeaders headers = new HttpHeaders();
 
@@ -49,6 +54,8 @@ public class ProjectService {
         } catch (RestClientException ex){
             System.out.println("Error while retrieving project with id "+projectId+":"+ex.getLocalizedMessage());
         }
+        Project parsedProject = Project.of(project);
+        //parsedProject.setCommits(commitService.findAllCommitsFromRepo());
         return project;
     }
 

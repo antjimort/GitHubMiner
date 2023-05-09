@@ -35,7 +35,7 @@ class CommitServiceTest {
 
         String owner = "fdnando15";
         String repo = "Proyecto-AISS";
-        String commitId = "339e7b1";
+        String commitId = "2fbdc132d47b13437476f7355ac76563b997783d";
 
         Commit commit = service.findCommitFromRepo(owner, repo, commitId);
         assertTrue(!commit.equals(null), "The commit is null");

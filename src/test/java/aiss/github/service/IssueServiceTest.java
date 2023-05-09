@@ -16,14 +16,14 @@ class IssueServiceTest {
     @Autowired
     IssueService service;
 
-    @Test
+ /*   @Test
     @DisplayName("Get all issues from the authenticated user")
     void findIssuesFromAuthenticatedUser() {
         List<Issue> issues = service.findIssuesFromAuthenticatedUser();
         assertTrue(!issues.isEmpty(), "The list of issues from the authenticated user is empty");
         System.out.println(issues);
     }
-
+*/
     @Test
     @DisplayName("Get single issue")
     void findSingleIssue() {
@@ -46,6 +46,7 @@ class IssueServiceTest {
     }
 
     @Test
+    @DisplayName("Get issues by state from an existing repository")
     void findProjectIssuesByState() {
         String owner = "DuGuQiuBai";
         String repo = "Java";

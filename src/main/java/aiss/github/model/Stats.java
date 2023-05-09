@@ -13,50 +13,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "name",
-    "email",
-    "date"
+    "total",
+    "additions",
+    "deletions"
 })
 @Generated("jsonschema2pojo")
-public class Author {
+public class Stats {
 
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("date")
-    private String date;
+    @JsonProperty("total")
+    private Integer total;
+    @JsonProperty("additions")
+    private Integer additions;
+    @JsonProperty("deletions")
+    private Integer deletions;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("total")
+    public Integer getTotal() {
+        return total;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("total")
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
+    @JsonProperty("additions")
+    public Integer getAdditions() {
+        return additions;
     }
 
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
+    @JsonProperty("additions")
+    public void setAdditions(Integer additions) {
+        this.additions = additions;
     }
 
-    @JsonProperty("date")
-    public String getDate() {
-        return date;
+    @JsonProperty("deletions")
+    public Integer getDeletions() {
+        return deletions;
     }
 
-    @JsonProperty("date")
-    public void setDate(String date) {
-        this.date = date;
+    @JsonProperty("deletions")
+    public void setDeletions(Integer deletions) {
+        this.deletions = deletions;
     }
 
     @JsonAnyGetter
@@ -72,18 +72,18 @@ public class Author {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("name");
+        sb.append(Stats.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("total");
         sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
+        sb.append(((this.total == null)?"<null>":this.total));
         sb.append(',');
-        sb.append("email");
+        sb.append("additions");
         sb.append('=');
-        sb.append(((this.email == null)?"<null>":this.email));
+        sb.append(((this.additions == null)?"<null>":this.additions));
         sb.append(',');
-        sb.append("date");
+        sb.append("deletions");
         sb.append('=');
-        sb.append(((this.date == null)?"<null>":this.date));
+        sb.append(((this.deletions == null)?"<null>":this.deletions));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
