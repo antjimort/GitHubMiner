@@ -56,6 +56,16 @@ public class Comment {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
+    public static Comment of(Comment comment){
+        Comment parsedComment = new Comment();
+        parsedComment.setId(comment.getId());
+        parsedComment.setBody(comment.getBody());
+        parsedComment.setCreatedAt(comment.getCreatedAt());
+        parsedComment.setUpdatedAt(comment.getUpdatedAt());
+
+        return parsedComment;
+    }
+
     @JsonProperty("url")
     public String getUrl() {
         return url;
@@ -188,66 +198,11 @@ public class Comment {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Comment.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("htmlUrl");
-        sb.append('=');
-        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
-        sb.append(',');
-        sb.append("issueUrl");
-        sb.append('=');
-        sb.append(((this.issueUrl == null)?"<null>":this.issueUrl));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("nodeId");
-        sb.append('=');
-        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
-        sb.append(',');
-        sb.append("user");
-        sb.append('=');
-        sb.append(((this.user == null)?"<null>":this.user));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("authorAssociation");
-        sb.append('=');
-        sb.append(((this.authorAssociation == null)?"<null>":this.authorAssociation));
-        sb.append(',');
-        sb.append("body");
-        sb.append('=');
-        sb.append(((this.body == null)?"<null>":this.body));
-        sb.append(',');
-        sb.append("reactions");
-        sb.append('=');
-        sb.append(((this.reactions == null)?"<null>":this.reactions));
-        sb.append(',');
-        sb.append("performedViaGithubApp");
-        sb.append('=');
-        sb.append(((this.performedViaGithubApp == null)?"<null>":this.performedViaGithubApp));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Comment{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\''+
+                '}';
     }
-
 }

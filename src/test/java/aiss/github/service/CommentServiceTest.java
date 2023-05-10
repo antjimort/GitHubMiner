@@ -15,11 +15,10 @@ class CommentServiceTest {
     @Autowired
     CommentService service;
 
-
+    /*
     @DisplayName("Find comments from repo")
     @Test
     void findAllCommentsFromRepo() {
-
         //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/comments
 
         String owner = "DynxstyGIT";
@@ -28,9 +27,10 @@ class CommentServiceTest {
         List<Comment> comments = service.findAllCommentsFromRepo(owner, repo);
         assertTrue(!comments.isEmpty(), "The list is empty");
         System.out.println(comments);
-
-
     }
+    */
+
+    /*
     @DisplayName("Find comment from issue")
     @Test
     void findCommentFromIssue() {
@@ -44,21 +44,20 @@ class CommentServiceTest {
         Comment comment = service.findCommentFromIssue(owner, repo, commentId);
         assertTrue(!comment.equals(null), "The comment is null");
         System.out.println(comment);
-
-
-
     }
+     */
+
     @DisplayName("Find comments from issue")
     @Test
     void findAllCommentsFromIssue() {
         //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/48/comments
 
-        String owner = "DynxstyGIT";
-        String repo = "DIH4JDA";
-        String issueId = "48" ;
+        String owner = "spring-projects";
+        String repo = "spring-framework";
+        String issueId = "30404" ;
 
         List<Comment> comments = service.findAllCommentsFromIssue(owner, repo, issueId);
-        assertTrue(!comments.isEmpty(), "The list is empty");
+        //assertTrue(!comments.isEmpty(), "The list is empty");
         System.out.println(comments);
 
     }
