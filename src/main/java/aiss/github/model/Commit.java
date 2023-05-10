@@ -54,6 +54,63 @@ public class Commit {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
+    private String title;
+
+    private String message;
+
+    private String author_name;
+
+    private String author_email;
+
+    private String authored_date;
+
+    private String committer_name;
+
+    private String committer_email;
+
+    private String committed_date;
+
+    public static Commit of(Commit c) {
+        Commit parsedCommit = new Commit();
+        parsedCommit.setSha(c.getSha());
+        parsedCommit.setTitle(getTitleFromMessage(c.getCommit().getMessage()));
+        parsedCommit.setMessage(getMessageFromMessage(c.getCommit().getMessage()));
+        parsedCommit.setAuthor_name(c.getCommit().getAuthor().getName());
+        parsedCommit.setAuthor_email(c.getCommit().getAuthor().getEmail());
+        parsedCommit.setAuthored_date(c.getCommit().getAuthor().getDate());
+        parsedCommit.setCommitter_name(c.getCommit().getCommitter().getName());
+        parsedCommit.setCommitter_email(c.getCommit().getCommitter().getEmail());
+        parsedCommit.setCommitted_date(c.getCommit().getCommitter().getDate());
+        parsedCommit.setHtmlUrl(c.getHtmlUrl());
+
+        return parsedCommit;
+
+    }
+
+    private static String getMessageFromMessage(String message) {
+        String [] trozos = message.split("\n\n");
+        String finalMessage = "";
+        if(trozos.length == 1){
+            finalMessage = message;
+        } else if(trozos.length==2) {
+            finalMessage = trozos[1];
+        } else {
+            for(int i = 1; i < trozos.length; i++){
+                finalMessage = finalMessage + trozos[i] +"\n\n";
+            }
+        }
+        return finalMessage;
+    }
+
+    private static String getTitleFromMessage(String message) {
+        String [] trozos = message.split("\n\n");
+        String titulo = "";
+        if(trozos.length >=2){
+            titulo = trozos[0].trim();
+        }
+        return titulo;
+    }
+
     @JsonProperty("sha")
     public String getSha() {
         return sha;
@@ -174,64 +231,83 @@ public class Commit {
         this.additionalProperties.put(name, value);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Commit.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("sha");
-        sb.append('=');
-        sb.append(((this.sha == null)?"<null>":this.sha));
-        sb.append(',');
-        sb.append("nodeId");
-        sb.append('=');
-        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
-        sb.append(',');
-        sb.append("commit");
-        sb.append('=');
-        sb.append(((this.commit == null)?"<null>":this.commit));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("htmlUrl");
-        sb.append('=');
-        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
-        sb.append(',');
-        sb.append("commentsUrl");
-        sb.append('=');
-        sb.append(((this.commentsUrl == null)?"<null>":this.commentsUrl));
-        sb.append(',');
-        sb.append("author");
-        sb.append('=');
-        sb.append(((this.author == null)?"<null>":this.author));
-        sb.append(',');
-        sb.append("committer");
-        sb.append('=');
-        sb.append(((this.committer == null)?"<null>":this.committer));
-        sb.append(',');
-        sb.append("parents");
-        sb.append('=');
-        sb.append(((this.parents == null)?"<null>":this.parents));
-        sb.append(',');
-        sb.append("stats");
-        sb.append('=');
-        sb.append(((this.stats == null)?"<null>":this.stats));
-        sb.append(',');
-        sb.append("files");
-        sb.append('=');
-        sb.append(((this.files == null)?"<null>":this.files));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+    public String getTitle() {
+        return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public String getAuthor_email() {
+        return author_email;
+    }
+
+    public void setAuthor_email(String author_email) {
+        this.author_email = author_email;
+    }
+
+    public String getAuthored_date() {
+        return authored_date;
+    }
+
+    public void setAuthored_date(String authored_date) {
+        this.authored_date = authored_date;
+    }
+
+    public String getCommitter_name() {
+        return committer_name;
+    }
+
+    public void setCommitter_name(String committer_name) {
+        this.committer_name = committer_name;
+    }
+
+    public String getCommitter_email() {
+        return committer_email;
+    }
+
+    public void setCommitter_email(String committer_email) {
+        this.committer_email = committer_email;
+    }
+
+    public String getCommitted_date() {
+        return committed_date;
+    }
+
+    public void setCommitted_date(String committed_date) {
+        this.committed_date = committed_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Commit{" +
+                "sha='" + sha + '\'' +
+                ", title='" + title + '\'' +
+                ", message='" + message + '\'' +
+                ", author_name='" + author_name + '\'' +
+                ", author_email='" + author_email + '\'' +
+                ", authored_date='" + authored_date + '\'' +
+                ", committer_name='" + committer_name + '\'' +
+                ", committer_email='" + committer_email + '\'' +
+                ", committed_date='" + committed_date + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                '}';
+    }
 }

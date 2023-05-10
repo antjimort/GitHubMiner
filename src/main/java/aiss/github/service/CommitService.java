@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,15 +32,20 @@ public class CommitService {
         } catch (RestClientException ex) {
 
             System.out.println("Error while retrieving commits from repository" + repo + ":"
-                    + ex.getLocalizedMessage());//sout
+                    + ex.getLocalizedMessage());
         }
 
+        List<Commit> parsedCommits = new ArrayList<>();
+        for(Commit c: commits){
+            Commit parsedCommit = Commit.of(c);
+            parsedCommits.add(parsedCommit);
+        }
 
-        return commits;
+        return parsedCommits;
 
     }
 
-    public Commit findCommitFromRepo(String owner, String repo, String commitId) {
+   /* public Commit findCommitFromRepo(String owner, String repo, String commitId) {
 
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits/" + commitId;
 
@@ -54,9 +60,10 @@ public class CommitService {
                     + ex.getLocalizedMessage());
         }
 
-        return commit;
-    }
+        Commit parsedCommit = Commit.of(commit);
 
+        return parsedCommit;
+    } */
 
 
 }

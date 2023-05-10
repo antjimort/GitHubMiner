@@ -1,5 +1,6 @@
 package aiss.github.service;
 
+import aiss.github.model.Commit;
 import aiss.github.model.Issue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -15,13 +16,12 @@ import java.util.List;
 @Service
 
 public class IssueService {
-
     @Autowired
     RestTemplate restTemplate;
 
-    String token = "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";
+    @Autowired
+    CommentService commentService;
     String baseUrl = "https://api.github.com";
-    HttpHeaders headers = new HttpHeaders();
 
     public List<Issue> findAllIssuesFromRepo(String owner, String repo){
 
@@ -33,10 +33,18 @@ public class IssueService {
         }catch (RestClientException ex){
             System.out.println("Error while getting issues from project "+repo+" of owner "+owner+" : "+ex.getLocalizedMessage());
         }
-        return issues;
+        List<Issue> parsedIssues = new ArrayList<>();
+        for(Issue i: issues){
+            Issue parsedIssue = Issue.of(i);
+            parsedIssue.setCommentsList(commentService.findAllCommentsFromIssue(owner, repo, parsedIssue.getNumber().toString()));
+            parsedIssues.add(parsedIssue);
+        }
+
+
+        return parsedIssues;
     }
 
-    public Issue findSingleIssue(String owner, String repo, String IssueId){
+  /*  public Issue findSingleIssue(String owner, String repo, String IssueId){
 
         String url = baseUrl +"/repos/"+ owner +"/"+ repo + "/issues/"+ IssueId;
         Issue issue = null;
@@ -83,5 +91,5 @@ public class IssueService {
         return issues;
 
 
-    }
+    } */
 }

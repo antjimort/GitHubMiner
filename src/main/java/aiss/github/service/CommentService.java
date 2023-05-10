@@ -70,7 +70,7 @@ public class CommentService {
 
         } catch (RestClientException ex) {
 
-            System.out.println("Error while retrieving comments from the issue of repo: "  + repo + ":"
+            System.out.println("Error while retrieving comments from the issue: "  + issueId + ":"
                     + ex.getLocalizedMessage());
         }
 

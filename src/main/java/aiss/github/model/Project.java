@@ -1,14 +1,102 @@
 
 package aiss.github.model;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Generated;
 
-import com.fasterxml.jackson.annotation.*;
+import aiss.github.service.ProjectService;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "id",
+    "node_id",
+    "name",
+    "full_name",
+    "private",
+    "owner",
+    "html_url",
+    "description",
+    "fork",
+    "url",
+    "forks_url",
+    "keys_url",
+    "collaborators_url",
+    "teams_url",
+    "hooks_url",
+    "issue_events_url",
+    "events_url",
+    "assignees_url",
+    "branches_url",
+    "tags_url",
+    "blobs_url",
+    "git_tags_url",
+    "git_refs_url",
+    "trees_url",
+    "statuses_url",
+    "languages_url",
+    "stargazers_url",
+    "contributors_url",
+    "subscribers_url",
+    "subscription_url",
+    "commits_url",
+    "git_commits_url",
+    "comments_url",
+    "issue_comment_url",
+    "contents_url",
+    "compare_url",
+    "merges_url",
+    "archive_url",
+    "downloads_url",
+    "issues_url",
+    "pulls_url",
+    "milestones_url",
+    "notifications_url",
+    "labels_url",
+    "releases_url",
+    "deployments_url",
+    "created_at",
+    "updated_at",
+    "pushed_at",
+    "git_url",
+    "ssh_url",
+    "clone_url",
+    "svn_url",
+    "homepage",
+    "size",
+    "stargazers_count",
+    "watchers_count",
+    "language",
+    "has_issues",
+    "has_projects",
+    "has_downloads",
+    "has_wiki",
+    "has_pages",
+    "has_discussions",
+    "forks_count",
+    "mirror_url",
+    "archived",
+    "disabled",
+    "open_issues_count",
+    "license",
+    "allow_forking",
+    "is_template",
+    "web_commit_signoff_required",
+    "topics",
+    "visibility",
+    "forks",
+    "open_issues",
+    "watchers",
+    "default_branch",
+    "permissions",
+    "temp_clone_token",
+    "organization",
+    "network_count",
+    "subscribers_count"
+})
+@Generated("jsonschema2pojo")
 public class Project {
 
     @JsonProperty("id")
@@ -118,7 +206,7 @@ public class Project {
     @JsonProperty("svn_url")
     private String svnUrl;
     @JsonProperty("homepage")
-    private Object homepage;
+    private String homepage;
     @JsonProperty("size")
     private Integer size;
     @JsonProperty("stargazers_count")
@@ -158,7 +246,7 @@ public class Project {
     @JsonProperty("web_commit_signoff_required")
     private Boolean webCommitSignoffRequired;
     @JsonProperty("topics")
-    private List<Object> topics;
+    private List<String> topics;
     @JsonProperty("visibility")
     private String visibility;
     @JsonProperty("forks")
@@ -179,20 +267,17 @@ public class Project {
     private Integer networkCount;
     @JsonProperty("subscribers_count")
     private Integer subscribersCount;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     private List<Commit> commits;
+
     private List<Issue> issues;
 
-
     public static Project of(Project project) {
-        Project parsedProject = new Project();
-        parsedProject.setId(project.getId());
-        parsedProject.setName(project.getName());
-        parsedProject.setHtmlUrl(project.getHtmlUrl());
-
-        return parsedProject;
+        Project project1 = new Project();
+        project1.setId(project.getId());
+        project1.setName(project.getName());
+        project1.setHtmlUrl(project.getHtmlUrl());
+        return  project1;
     }
 
     @JsonProperty("id")
@@ -726,12 +811,12 @@ public class Project {
     }
 
     @JsonProperty("homepage")
-    public Object getHomepage() {
+    public String getHomepage() {
         return homepage;
     }
 
     @JsonProperty("homepage")
-    public void setHomepage(Object homepage) {
+    public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
 
@@ -926,12 +1011,12 @@ public class Project {
     }
 
     @JsonProperty("topics")
-    public List<Object> getTopics() {
+    public List<String> getTopics() {
         return topics;
     }
 
     @JsonProperty("topics")
-    public void setTopics(List<Object> topics) {
+    public void setTopics(List<String> topics) {
         this.topics = topics;
     }
 
@@ -1035,16 +1120,6 @@ public class Project {
         this.subscribersCount = subscribersCount;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     public List<Commit> getCommits() {
         return commits;
     }
@@ -1063,354 +1138,93 @@ public class Project {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Project.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("nodeId");
-        sb.append('=');
-        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("fullName");
-        sb.append('=');
-        sb.append(((this.fullName == null)?"<null>":this.fullName));
-        sb.append(',');
-        sb.append("_private");
-        sb.append('=');
-        sb.append(((this._private == null)?"<null>":this._private));
-        sb.append(',');
-        sb.append("owner");
-        sb.append('=');
-        sb.append(((this.owner == null)?"<null>":this.owner));
-        sb.append(',');
-        sb.append("htmlUrl");
-        sb.append('=');
-        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("fork");
-        sb.append('=');
-        sb.append(((this.fork == null)?"<null>":this.fork));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("forksUrl");
-        sb.append('=');
-        sb.append(((this.forksUrl == null)?"<null>":this.forksUrl));
-        sb.append(',');
-        sb.append("keysUrl");
-        sb.append('=');
-        sb.append(((this.keysUrl == null)?"<null>":this.keysUrl));
-        sb.append(',');
-        sb.append("collaboratorsUrl");
-        sb.append('=');
-        sb.append(((this.collaboratorsUrl == null)?"<null>":this.collaboratorsUrl));
-        sb.append(',');
-        sb.append("teamsUrl");
-        sb.append('=');
-        sb.append(((this.teamsUrl == null)?"<null>":this.teamsUrl));
-        sb.append(',');
-        sb.append("hooksUrl");
-        sb.append('=');
-        sb.append(((this.hooksUrl == null)?"<null>":this.hooksUrl));
-        sb.append(',');
-        sb.append("issueEventsUrl");
-        sb.append('=');
-        sb.append(((this.issueEventsUrl == null)?"<null>":this.issueEventsUrl));
-        sb.append(',');
-        sb.append("eventsUrl");
-        sb.append('=');
-        sb.append(((this.eventsUrl == null)?"<null>":this.eventsUrl));
-        sb.append(',');
-        sb.append("assigneesUrl");
-        sb.append('=');
-        sb.append(((this.assigneesUrl == null)?"<null>":this.assigneesUrl));
-        sb.append(',');
-        sb.append("branchesUrl");
-        sb.append('=');
-        sb.append(((this.branchesUrl == null)?"<null>":this.branchesUrl));
-        sb.append(',');
-        sb.append("tagsUrl");
-        sb.append('=');
-        sb.append(((this.tagsUrl == null)?"<null>":this.tagsUrl));
-        sb.append(',');
-        sb.append("blobsUrl");
-        sb.append('=');
-        sb.append(((this.blobsUrl == null)?"<null>":this.blobsUrl));
-        sb.append(',');
-        sb.append("gitTagsUrl");
-        sb.append('=');
-        sb.append(((this.gitTagsUrl == null)?"<null>":this.gitTagsUrl));
-        sb.append(',');
-        sb.append("gitRefsUrl");
-        sb.append('=');
-        sb.append(((this.gitRefsUrl == null)?"<null>":this.gitRefsUrl));
-        sb.append(',');
-        sb.append("treesUrl");
-        sb.append('=');
-        sb.append(((this.treesUrl == null)?"<null>":this.treesUrl));
-        sb.append(',');
-        sb.append("statusesUrl");
-        sb.append('=');
-        sb.append(((this.statusesUrl == null)?"<null>":this.statusesUrl));
-        sb.append(',');
-        sb.append("languagesUrl");
-        sb.append('=');
-        sb.append(((this.languagesUrl == null)?"<null>":this.languagesUrl));
-        sb.append(',');
-        sb.append("stargazersUrl");
-        sb.append('=');
-        sb.append(((this.stargazersUrl == null)?"<null>":this.stargazersUrl));
-        sb.append(',');
-        sb.append("contributorsUrl");
-        sb.append('=');
-        sb.append(((this.contributorsUrl == null)?"<null>":this.contributorsUrl));
-        sb.append(',');
-        sb.append("subscribersUrl");
-        sb.append('=');
-        sb.append(((this.subscribersUrl == null)?"<null>":this.subscribersUrl));
-        sb.append(',');
-        sb.append("subscriptionUrl");
-        sb.append('=');
-        sb.append(((this.subscriptionUrl == null)?"<null>":this.subscriptionUrl));
-        sb.append(',');
-        sb.append("commitsUrl");
-        sb.append('=');
-        sb.append(((this.commitsUrl == null)?"<null>":this.commitsUrl));
-        sb.append(',');
-        sb.append("gitCommitsUrl");
-        sb.append('=');
-        sb.append(((this.gitCommitsUrl == null)?"<null>":this.gitCommitsUrl));
-        sb.append(',');
-        sb.append("commentsUrl");
-        sb.append('=');
-        sb.append(((this.commentsUrl == null)?"<null>":this.commentsUrl));
-        sb.append(',');
-        sb.append("issueCommentUrl");
-        sb.append('=');
-        sb.append(((this.issueCommentUrl == null)?"<null>":this.issueCommentUrl));
-        sb.append(',');
-        sb.append("contentsUrl");
-        sb.append('=');
-        sb.append(((this.contentsUrl == null)?"<null>":this.contentsUrl));
-        sb.append(',');
-        sb.append("compareUrl");
-        sb.append('=');
-        sb.append(((this.compareUrl == null)?"<null>":this.compareUrl));
-        sb.append(',');
-        sb.append("mergesUrl");
-        sb.append('=');
-        sb.append(((this.mergesUrl == null)?"<null>":this.mergesUrl));
-        sb.append(',');
-        sb.append("archiveUrl");
-        sb.append('=');
-        sb.append(((this.archiveUrl == null)?"<null>":this.archiveUrl));
-        sb.append(',');
-        sb.append("downloadsUrl");
-        sb.append('=');
-        sb.append(((this.downloadsUrl == null)?"<null>":this.downloadsUrl));
-        sb.append(',');
-        sb.append("issuesUrl");
-        sb.append('=');
-        sb.append(((this.issuesUrl == null)?"<null>":this.issuesUrl));
-        sb.append(',');
-        sb.append("pullsUrl");
-        sb.append('=');
-        sb.append(((this.pullsUrl == null)?"<null>":this.pullsUrl));
-        sb.append(',');
-        sb.append("milestonesUrl");
-        sb.append('=');
-        sb.append(((this.milestonesUrl == null)?"<null>":this.milestonesUrl));
-        sb.append(',');
-        sb.append("notificationsUrl");
-        sb.append('=');
-        sb.append(((this.notificationsUrl == null)?"<null>":this.notificationsUrl));
-        sb.append(',');
-        sb.append("labelsUrl");
-        sb.append('=');
-        sb.append(((this.labelsUrl == null)?"<null>":this.labelsUrl));
-        sb.append(',');
-        sb.append("releasesUrl");
-        sb.append('=');
-        sb.append(((this.releasesUrl == null)?"<null>":this.releasesUrl));
-        sb.append(',');
-        sb.append("deploymentsUrl");
-        sb.append('=');
-        sb.append(((this.deploymentsUrl == null)?"<null>":this.deploymentsUrl));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("pushedAt");
-        sb.append('=');
-        sb.append(((this.pushedAt == null)?"<null>":this.pushedAt));
-        sb.append(',');
-        sb.append("gitUrl");
-        sb.append('=');
-        sb.append(((this.gitUrl == null)?"<null>":this.gitUrl));
-        sb.append(',');
-        sb.append("sshUrl");
-        sb.append('=');
-        sb.append(((this.sshUrl == null)?"<null>":this.sshUrl));
-        sb.append(',');
-        sb.append("cloneUrl");
-        sb.append('=');
-        sb.append(((this.cloneUrl == null)?"<null>":this.cloneUrl));
-        sb.append(',');
-        sb.append("svnUrl");
-        sb.append('=');
-        sb.append(((this.svnUrl == null)?"<null>":this.svnUrl));
-        sb.append(',');
-        sb.append("homepage");
-        sb.append('=');
-        sb.append(((this.homepage == null)?"<null>":this.homepage));
-        sb.append(',');
-        sb.append("size");
-        sb.append('=');
-        sb.append(((this.size == null)?"<null>":this.size));
-        sb.append(',');
-        sb.append("stargazersCount");
-        sb.append('=');
-        sb.append(((this.stargazersCount == null)?"<null>":this.stargazersCount));
-        sb.append(',');
-        sb.append("watchersCount");
-        sb.append('=');
-        sb.append(((this.watchersCount == null)?"<null>":this.watchersCount));
-        sb.append(',');
-        sb.append("language");
-        sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
-        sb.append(',');
-        sb.append("hasIssues");
-        sb.append('=');
-        sb.append(((this.hasIssues == null)?"<null>":this.hasIssues));
-        sb.append(',');
-        sb.append("hasProjects");
-        sb.append('=');
-        sb.append(((this.hasProjects == null)?"<null>":this.hasProjects));
-        sb.append(',');
-        sb.append("hasDownloads");
-        sb.append('=');
-        sb.append(((this.hasDownloads == null)?"<null>":this.hasDownloads));
-        sb.append(',');
-        sb.append("hasWiki");
-        sb.append('=');
-        sb.append(((this.hasWiki == null)?"<null>":this.hasWiki));
-        sb.append(',');
-        sb.append("hasPages");
-        sb.append('=');
-        sb.append(((this.hasPages == null)?"<null>":this.hasPages));
-        sb.append(',');
-        sb.append("hasDiscussions");
-        sb.append('=');
-        sb.append(((this.hasDiscussions == null)?"<null>":this.hasDiscussions));
-        sb.append(',');
-        sb.append("forksCount");
-        sb.append('=');
-        sb.append(((this.forksCount == null)?"<null>":this.forksCount));
-        sb.append(',');
-        sb.append("mirrorUrl");
-        sb.append('=');
-        sb.append(((this.mirrorUrl == null)?"<null>":this.mirrorUrl));
-        sb.append(',');
-        sb.append("archived");
-        sb.append('=');
-        sb.append(((this.archived == null)?"<null>":this.archived));
-        sb.append(',');
-        sb.append("disabled");
-        sb.append('=');
-        sb.append(((this.disabled == null)?"<null>":this.disabled));
-        sb.append(',');
-        sb.append("openIssuesCount");
-        sb.append('=');
-        sb.append(((this.openIssuesCount == null)?"<null>":this.openIssuesCount));
-        sb.append(',');
-        sb.append("license");
-        sb.append('=');
-        sb.append(((this.license == null)?"<null>":this.license));
-        sb.append(',');
-        sb.append("allowForking");
-        sb.append('=');
-        sb.append(((this.allowForking == null)?"<null>":this.allowForking));
-        sb.append(',');
-        sb.append("isTemplate");
-        sb.append('=');
-        sb.append(((this.isTemplate == null)?"<null>":this.isTemplate));
-        sb.append(',');
-        sb.append("webCommitSignoffRequired");
-        sb.append('=');
-        sb.append(((this.webCommitSignoffRequired == null)?"<null>":this.webCommitSignoffRequired));
-        sb.append(',');
-        sb.append("topics");
-        sb.append('=');
-        sb.append(((this.topics == null)?"<null>":this.topics));
-        sb.append(',');
-        sb.append("visibility");
-        sb.append('=');
-        sb.append(((this.visibility == null)?"<null>":this.visibility));
-        sb.append(',');
-        sb.append("forks");
-        sb.append('=');
-        sb.append(((this.forks == null)?"<null>":this.forks));
-        sb.append(',');
-        sb.append("openIssues");
-        sb.append('=');
-        sb.append(((this.openIssues == null)?"<null>":this.openIssues));
-        sb.append(',');
-        sb.append("watchers");
-        sb.append('=');
-        sb.append(((this.watchers == null)?"<null>":this.watchers));
-        sb.append(',');
-        sb.append("defaultBranch");
-        sb.append('=');
-        sb.append(((this.defaultBranch == null)?"<null>":this.defaultBranch));
-        sb.append(',');
-        sb.append("permissions");
-        sb.append('=');
-        sb.append(((this.permissions == null)?"<null>":this.permissions));
-        sb.append(',');
-        sb.append("tempCloneToken");
-        sb.append('=');
-        sb.append(((this.tempCloneToken == null)?"<null>":this.tempCloneToken));
-        sb.append(',');
-        sb.append("organization");
-        sb.append('=');
-        sb.append(((this.organization == null)?"<null>":this.organization));
-        sb.append(',');
-        sb.append("networkCount");
-        sb.append('=');
-        sb.append(((this.networkCount == null)?"<null>":this.networkCount));
-        sb.append(',');
-        sb.append("subscribersCount");
-        sb.append('=');
-        sb.append(((this.subscribersCount == null)?"<null>":this.subscribersCount));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Project{" +
+                "id=" + id +
+                ", nodeId='" + nodeId + '\'' +
+                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", _private=" + _private +
+                ", owner=" + owner +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", fork=" + fork +
+                ", url='" + url + '\'' +
+                ", forksUrl='" + forksUrl + '\'' +
+                ", keysUrl='" + keysUrl + '\'' +
+                ", collaboratorsUrl='" + collaboratorsUrl + '\'' +
+                ", teamsUrl='" + teamsUrl + '\'' +
+                ", hooksUrl='" + hooksUrl + '\'' +
+                ", issueEventsUrl='" + issueEventsUrl + '\'' +
+                ", eventsUrl='" + eventsUrl + '\'' +
+                ", assigneesUrl='" + assigneesUrl + '\'' +
+                ", branchesUrl='" + branchesUrl + '\'' +
+                ", tagsUrl='" + tagsUrl + '\'' +
+                ", blobsUrl='" + blobsUrl + '\'' +
+                ", gitTagsUrl='" + gitTagsUrl + '\'' +
+                ", gitRefsUrl='" + gitRefsUrl + '\'' +
+                ", treesUrl='" + treesUrl + '\'' +
+                ", statusesUrl='" + statusesUrl + '\'' +
+                ", languagesUrl='" + languagesUrl + '\'' +
+                ", stargazersUrl='" + stargazersUrl + '\'' +
+                ", contributorsUrl='" + contributorsUrl + '\'' +
+                ", subscribersUrl='" + subscribersUrl + '\'' +
+                ", subscriptionUrl='" + subscriptionUrl + '\'' +
+                ", commitsUrl='" + commitsUrl + '\'' +
+                ", gitCommitsUrl='" + gitCommitsUrl + '\'' +
+                ", commentsUrl='" + commentsUrl + '\'' +
+                ", issueCommentUrl='" + issueCommentUrl + '\'' +
+                ", contentsUrl='" + contentsUrl + '\'' +
+                ", compareUrl='" + compareUrl + '\'' +
+                ", mergesUrl='" + mergesUrl + '\'' +
+                ", archiveUrl='" + archiveUrl + '\'' +
+                ", downloadsUrl='" + downloadsUrl + '\'' +
+                ", issuesUrl='" + issuesUrl + '\'' +
+                ", pullsUrl='" + pullsUrl + '\'' +
+                ", milestonesUrl='" + milestonesUrl + '\'' +
+                ", notificationsUrl='" + notificationsUrl + '\'' +
+                ", labelsUrl='" + labelsUrl + '\'' +
+                ", releasesUrl='" + releasesUrl + '\'' +
+                ", deploymentsUrl='" + deploymentsUrl + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", pushedAt='" + pushedAt + '\'' +
+                ", gitUrl='" + gitUrl + '\'' +
+                ", sshUrl='" + sshUrl + '\'' +
+                ", cloneUrl='" + cloneUrl + '\'' +
+                ", svnUrl='" + svnUrl + '\'' +
+                ", homepage='" + homepage + '\'' +
+                ", size=" + size +
+                ", stargazersCount=" + stargazersCount +
+                ", watchersCount=" + watchersCount +
+                ", language='" + language + '\'' +
+                ", hasIssues=" + hasIssues +
+                ", hasProjects=" + hasProjects +
+                ", hasDownloads=" + hasDownloads +
+                ", hasWiki=" + hasWiki +
+                ", hasPages=" + hasPages +
+                ", hasDiscussions=" + hasDiscussions +
+                ", forksCount=" + forksCount +
+                ", mirrorUrl=" + mirrorUrl +
+                ", archived=" + archived +
+                ", disabled=" + disabled +
+                ", openIssuesCount=" + openIssuesCount +
+                ", license=" + license +
+                ", allowForking=" + allowForking +
+                ", isTemplate=" + isTemplate +
+                ", webCommitSignoffRequired=" + webCommitSignoffRequired +
+                ", topics=" + topics +
+                ", visibility='" + visibility + '\'' +
+                ", forks=" + forks +
+                ", openIssues=" + openIssues +
+                ", watchers=" + watchers +
+                ", defaultBranch='" + defaultBranch + '\'' +
+                ", permissions=" + permissions +
+                ", tempCloneToken='" + tempCloneToken + '\'' +
+                ", organization=" + organization +
+                ", networkCount=" + networkCount +
+                ", subscribersCount=" + subscribersCount +
+                ", commits=" + commits +
+                ", issues=" + issues +
+                '}';
     }
-
 }

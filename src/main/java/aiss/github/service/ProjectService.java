@@ -25,38 +25,18 @@ public class ProjectService {
     String baseUrl = "https://api.github.com";
     HttpHeaders headers = new HttpHeaders();
 
-    public List<Project> findAllProjectsFromOrg(String org){
-        String url = baseUrl + "/orgs/"+org+"/projects";
-        headers.set("Authorization", "Bearer " + token);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Project> entity = new HttpEntity<>(headers);
-        List<Project> projects = new ArrayList<>();
-
-        try{
-            ResponseEntity<Project[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Project[].class);
-            projects = Arrays.stream(response.getBody()).toList();
-        } catch (RestClientException ex){
-            System.out.println("Error while retrieving "+org+" projects: "+ex.getLocalizedMessage());
-        }
-
-        return projects;
-    }
-
-    public Project findProject(String projectId){
-        String url = baseUrl + "/projects/"+projectId;
-        headers.set("Authorization", "Bearer " + token);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Project> entity = new HttpEntity<>(headers);
+    public Project getProject(String owner, String repoName){
+        String url = "https://api.github.com/repos/"+owner+"/"+repoName;
         Project project = null;
-
         try{
-            project = restTemplate.exchange(url, HttpMethod.GET, entity, Project.class).getBody();
+            project = restTemplate.getForObject(url, Project.class);
         } catch (RestClientException ex){
-            System.out.println("Error while retrieving project with id "+projectId+":"+ex.getLocalizedMessage());
+            System.out.println("Error while retrieving project of owner "+owner+ " and repo "+repoName+": "+ex.getLocalizedMessage());
         }
         Project parsedProject = Project.of(project);
-        //parsedProject.setCommits(commitService.findAllCommitsFromRepo());
-        return project;
+        parsedProject.setCommits(commitService.findAllCommitsFromRepo(owner, repoName));
+        parsedProject.setIssues(issueService.findAllIssuesFromRepo(owner, repoName));
+        return parsedProject;
     }
 
 }

@@ -15,20 +15,12 @@ class ProjectServiceTest {
 
     @Autowired
     ProjectService service;
-    @Test
-    @DisplayName("Get all projects from an existing organisation")
-    void findAllProjectsFromOrg() {
-        String org = "Docker";
-        List<Project> projects = service.findAllProjectsFromOrg(org);
-        assertTrue(!projects.isEmpty(), "The list of projects is empty");
-        System.out.println(projects);
-    }
+
 
     @Test
-    @DisplayName("Get a project by specifying its id")
-    void findProject() {
-        String projectId = "2443467";
-        Project project = service.findProject(projectId);
+    @DisplayName("Get project by its owner and repo name")
+    void getProject() {
+        Project project = service.getProject("spring-projects", "spring-framework");
         assertTrue(!project.equals(null), "The project is null");
         System.out.println(project);
     }

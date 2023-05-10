@@ -20,8 +20,8 @@ class CommitServiceTest {
     @DisplayName("Find all commits from an existing repo")
     void findAllCommitsFromRepo() {
 
-        String owner = "DuGuQiuBai";
-        String repo = "Java";
+        String owner = "spring-projects";
+        String repo = "spring-framework";
 
         List<Commit> commits = service.findAllCommitsFromRepo(owner, repo);
         assertTrue(!commits.isEmpty(), "The list is empty");
@@ -29,16 +29,16 @@ class CommitServiceTest {
 
     }
 
-    @Test
+  /*  @Test
     @DisplayName("Find commit from an existing repo")
     void findCommitFromRepo() {
 
-        String owner = "fdnando15";
-        String repo = "Proyecto-AISS";
-        String commitId = "2fbdc132d47b13437476f7355ac76563b997783d";
+        String owner = "spring-projects";
+        String repo = "spring-framework";
+        String commitId = "963274";
 
         Commit commit = service.findCommitFromRepo(owner, repo, commitId);
         assertTrue(!commit.equals(null), "The commit is null");
         System.out.println(commit);
-    }
+    } */
 }

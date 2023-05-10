@@ -115,7 +115,26 @@ public class Issue {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
+    private Integer upvotes;
+    private Integer downvotes;
     private List<Comment> commentsList;
+
+    public static Issue of(Issue i) {
+        Issue parsedIssue = new Issue();
+        parsedIssue.setId(i.getId());
+        parsedIssue.setNumber(i.getNumber());
+        parsedIssue.setTitle(i.getTitle());
+        parsedIssue.setBody(i.getBody());
+        parsedIssue.setState(i.getState());
+        parsedIssue.setCreatedAt(i.getCreatedAt());
+        parsedIssue.setUpdatedAt(i.getUpdatedAt());
+        parsedIssue.setLabels(i.getLabels());
+        parsedIssue.setUpvotes(i.getReactions().getUpvotes());
+        parsedIssue.setDownvotes(i.getReactions().getDownvotes());
+
+        return parsedIssue;
+
+    }
 
     @JsonProperty("url")
     public String getUrl() {
@@ -437,6 +456,22 @@ public class Issue {
         this.additionalProperties.put(name, value);
     }
 
+    public Integer getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(Integer upvotes) {
+        this.upvotes = upvotes;
+    }
+
+    public Integer getDownvotes() {
+        return downvotes;
+    }
+
+    public void setDownvotes(Integer downvotes) {
+        this.downvotes = downvotes;
+    }
+
     public List<Comment> getCommentsList() {
         return commentsList;
     }
@@ -448,38 +483,18 @@ public class Issue {
     @Override
     public String toString() {
         return "Issue{" +
-                "url='" + url + '\'' +
-                ", repositoryUrl='" + repositoryUrl + '\'' +
-                ", labelsUrl='" + labelsUrl + '\'' +
-                ", commentsUrl='" + commentsUrl + '\'' +
-                ", eventsUrl='" + eventsUrl + '\'' +
-                ", htmlUrl='" + htmlUrl + '\'' +
-                ", id=" + id +
-                ", nodeId='" + nodeId + '\'' +
+                "id=" + id +
                 ", number=" + number +
                 ", title='" + title + '\'' +
-                ", user=" + user +
-                ", labels=" + labels +
+                ", body='" + body + '\'' +
                 ", state='" + state + '\'' +
-                ", locked=" + locked +
-                ", assignee=" + assignee +
-                ", assignees=" + assignees +
-                ", milestone=" + milestone +
-                ", comments=" + comments +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
                 ", closedAt=" + closedAt +
-                ", authorAssociation='" + authorAssociation + '\'' +
-                ", activeLockReason=" + activeLockReason +
-                ", draft=" + draft +
-                ", pullRequest=" + pullRequest +
-                ", body='" + body + '\'' +
-                ", closedBy=" + closedBy +
-                ", reactions=" + reactions +
-                ", timelineUrl='" + timelineUrl + '\'' +
-                ", performedViaGithubApp=" + performedViaGithubApp +
-                ", stateReason=" + stateReason +
-                ", additionalProperties=" + additionalProperties +
+                ", labels=" + labels +
+                ", upvotes=" + upvotes +
+                ", downvotes=" + downvotes +
+                ", commentsList=" + commentsList +
                 '}';
     }
 }
