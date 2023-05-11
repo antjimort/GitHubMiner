@@ -1,70 +1,50 @@
-
 package aiss.github.model;
 
+import com.fasterxml.jackson.annotation.*;
+
+import javax.annotation.Generated;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Generated;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "url",
-    "repository_url",
-    "labels_url",
-    "comments_url",
-    "events_url",
-    "html_url",
-    "id",
-    "node_id",
-    "number",
-    "title",
-    "user",
-    "labels",
-    "state",
-    "locked",
-    "assignee",
-    "assignees",
-    "milestone",
-    "comments",
-    "created_at",
-    "updated_at",
-    "closed_at",
-    "author_association",
-    "active_lock_reason",
-    "draft",
-    "pull_request",
-    "body",
-    "closed_by",
-    "reactions",
-    "timeline_url",
-    "performed_via_github_app",
-    "state_reason"
+        "id",
+        "number",
+        "title",
+        "body",
+        "state",
+        "created_at",
+        "updated_at",
+        "closed_at",
+        "labels",
+        "user",
+        "assignee",
+        "upvotes",
+        "downvotes",
+        "html_url",
+        "commentList"
 })
+
 @Generated("jsonschema2pojo")
 public class Issue {
 
-    @JsonProperty("url")
+    @JsonIgnore
     private String url;
-    @JsonProperty("repository_url")
+    @JsonIgnore
     private String repositoryUrl;
-    @JsonProperty("labels_url")
+    @JsonIgnore
     private String labelsUrl;
-    @JsonProperty("comments_url")
+    @JsonIgnore
     private String commentsUrl;
-    @JsonProperty("events_url")
+    @JsonIgnore
     private String eventsUrl;
     @JsonProperty("html_url")
     private String htmlUrl;
     @JsonProperty("id")
     private Integer id;
-    @JsonProperty("node_id")
+    @JsonIgnore
     private String nodeId;
     @JsonProperty("number")
     private Integer number;
@@ -76,15 +56,16 @@ public class Issue {
     private List<Object> labels;
     @JsonProperty("state")
     private String state;
-    @JsonProperty("locked")
+    @JsonIgnore
     private Boolean locked;
     @JsonProperty("assignee")
-    private Object assignee;
-    @JsonProperty("assignees")
+    @JsonInclude(JsonInclude.Include.ALWAYS)
+    private User assignee;
+    @JsonIgnore
     private List<Object> assignees;
-    @JsonProperty("milestone")
+    @JsonIgnore
     private Object milestone;
-    @JsonProperty("comments")
+    @JsonIgnore
     private Integer comments;
     @JsonProperty("created_at")
     private String createdAt;
@@ -92,25 +73,29 @@ public class Issue {
     private String updatedAt;
     @JsonProperty("closed_at")
     private Object closedAt;
-    @JsonProperty("author_association")
+    @JsonIgnore
     private String authorAssociation;
-    @JsonProperty("active_lock_reason")
+    @JsonIgnore
     private Object activeLockReason;
-    @JsonProperty("draft")
+    @JsonIgnore
     private Boolean draft;
-    @JsonProperty("pull_request")
+    @JsonIgnore
     private PullRequest pullRequest;
     @JsonProperty("body")
     private String body;
-    @JsonProperty("closed_by")
+
+    @JsonIgnore
     private Object closedBy;
+
+    @JsonIgnore
     @JsonProperty("reactions")
     private Reactions reactions;
-    @JsonProperty("timeline_url")
+
+    @JsonIgnore
     private String timelineUrl;
-    @JsonProperty("performed_via_github_app")
+    @JsonIgnore
     private Object performedViaGithubApp;
-    @JsonProperty("state_reason")
+    @JsonIgnore
     private Object stateReason;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -131,57 +116,57 @@ public class Issue {
         parsedIssue.setLabels(i.getLabels());
         parsedIssue.setUpvotes(i.getReactions().getUpvotes());
         parsedIssue.setDownvotes(i.getReactions().getDownvotes());
-
+        parsedIssue.setUser(User.of(i.getUser()));
+        parsedIssue.setAssignee(User.of(i.getAssignee()));
+        parsedIssue.setHtmlUrl(i.getHtmlUrl());
         return parsedIssue;
 
     }
 
-    @JsonProperty("url")
     public String getUrl() {
         return url;
     }
 
-    @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
 
-    @JsonProperty("repository_url")
+
     public String getRepositoryUrl() {
         return repositoryUrl;
     }
 
-    @JsonProperty("repository_url")
+
     public void setRepositoryUrl(String repositoryUrl) {
         this.repositoryUrl = repositoryUrl;
     }
 
-    @JsonProperty("labels_url")
+
     public String getLabelsUrl() {
         return labelsUrl;
     }
 
-    @JsonProperty("labels_url")
+
     public void setLabelsUrl(String labelsUrl) {
         this.labelsUrl = labelsUrl;
     }
 
-    @JsonProperty("comments_url")
+
     public String getCommentsUrl() {
         return commentsUrl;
     }
 
-    @JsonProperty("comments_url")
+
     public void setCommentsUrl(String commentsUrl) {
         this.commentsUrl = commentsUrl;
     }
 
-    @JsonProperty("events_url")
+
     public String getEventsUrl() {
         return eventsUrl;
     }
 
-    @JsonProperty("events_url")
+
     public void setEventsUrl(String eventsUrl) {
         this.eventsUrl = eventsUrl;
     }
@@ -206,12 +191,12 @@ public class Issue {
         this.id = id;
     }
 
-    @JsonProperty("node_id")
+
     public String getNodeId() {
         return nodeId;
     }
 
-    @JsonProperty("node_id")
+
     public void setNodeId(String nodeId) {
         this.nodeId = nodeId;
     }
@@ -266,52 +251,52 @@ public class Issue {
         this.state = state;
     }
 
-    @JsonProperty("locked")
+
     public Boolean getLocked() {
         return locked;
     }
 
-    @JsonProperty("locked")
+
     public void setLocked(Boolean locked) {
         this.locked = locked;
     }
 
     @JsonProperty("assignee")
-    public Object getAssignee() {
+    public User getAssignee() {
         return assignee;
     }
 
     @JsonProperty("assignee")
-    public void setAssignee(Object assignee) {
+    public void setAssignee(User assignee) {
         this.assignee = assignee;
     }
 
-    @JsonProperty("assignees")
+
     public List<Object> getAssignees() {
         return assignees;
     }
 
-    @JsonProperty("assignees")
+
     public void setAssignees(List<Object> assignees) {
         this.assignees = assignees;
     }
 
-    @JsonProperty("milestone")
+
     public Object getMilestone() {
         return milestone;
     }
 
-    @JsonProperty("milestone")
+
     public void setMilestone(Object milestone) {
         this.milestone = milestone;
     }
 
-    @JsonProperty("comments")
+
     public Integer getComments() {
         return comments;
     }
 
-    @JsonProperty("comments")
+
     public void setComments(Integer comments) {
         this.comments = comments;
     }
@@ -346,42 +331,42 @@ public class Issue {
         this.closedAt = closedAt;
     }
 
-    @JsonProperty("author_association")
+
     public String getAuthorAssociation() {
         return authorAssociation;
     }
 
-    @JsonProperty("author_association")
+
     public void setAuthorAssociation(String authorAssociation) {
         this.authorAssociation = authorAssociation;
     }
 
-    @JsonProperty("active_lock_reason")
+
     public Object getActiveLockReason() {
         return activeLockReason;
     }
 
-    @JsonProperty("active_lock_reason")
+
     public void setActiveLockReason(Object activeLockReason) {
         this.activeLockReason = activeLockReason;
     }
 
-    @JsonProperty("draft")
+
     public Boolean getDraft() {
         return draft;
     }
 
-    @JsonProperty("draft")
+
     public void setDraft(Boolean draft) {
         this.draft = draft;
     }
 
-    @JsonProperty("pull_request")
+
     public PullRequest getPullRequest() {
         return pullRequest;
     }
 
-    @JsonProperty("pull_request")
+
     public void setPullRequest(PullRequest pullRequest) {
         this.pullRequest = pullRequest;
     }
@@ -396,52 +381,46 @@ public class Issue {
         this.body = body;
     }
 
-    @JsonProperty("closed_by")
+
     public Object getClosedBy() {
         return closedBy;
     }
 
-    @JsonProperty("closed_by")
+
     public void setClosedBy(Object closedBy) {
         this.closedBy = closedBy;
     }
 
-    @JsonProperty("reactions")
+
     public Reactions getReactions() {
         return reactions;
     }
 
-    @JsonProperty("reactions")
     public void setReactions(Reactions reactions) {
         this.reactions = reactions;
     }
 
-    @JsonProperty("timeline_url")
     public String getTimelineUrl() {
         return timelineUrl;
     }
 
-    @JsonProperty("timeline_url")
     public void setTimelineUrl(String timelineUrl) {
         this.timelineUrl = timelineUrl;
     }
 
-    @JsonProperty("performed_via_github_app")
     public Object getPerformedViaGithubApp() {
         return performedViaGithubApp;
     }
 
-    @JsonProperty("performed_via_github_app")
     public void setPerformedViaGithubApp(Object performedViaGithubApp) {
         this.performedViaGithubApp = performedViaGithubApp;
     }
 
-    @JsonProperty("state_reason")
+
     public Object getStateReason() {
         return stateReason;
     }
 
-    @JsonProperty("state_reason")
     public void setStateReason(Object stateReason) {
         this.stateReason = stateReason;
     }
@@ -483,7 +462,7 @@ public class Issue {
     @Override
     public String toString() {
         return "Issue{" +
-                "id=" + id +
+                ", id=" + id +
                 ", number=" + number +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
@@ -494,6 +473,8 @@ public class Issue {
                 ", labels=" + labels +
                 ", upvotes=" + upvotes +
                 ", downvotes=" + downvotes +
+                ", user=" + user +
+                ", assignee=" + assignee +
                 ", commentsList=" + commentsList +
                 '}';
     }

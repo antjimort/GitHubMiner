@@ -18,18 +18,25 @@ import java.util.List;
 public class IssueService {
     @Autowired
     RestTemplate restTemplate;
-
     @Autowired
     CommentService commentService;
     String baseUrl = "https://api.github.com";
 
+    String token = "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";
+
+    HttpHeaders headers = new HttpHeaders();
+
     public List<Issue> findAllIssuesFromRepo(String owner, String repo){
 
         String url = baseUrl +"/repos/"+ owner +"/"+ repo + "/issues";
+        headers.set("Authorization", "Bearer " + token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Issue> entity = new HttpEntity<>(headers);
+
         List<Issue> issues = new ArrayList<>();
         try{
-            Issue[] issueArray = restTemplate.getForObject(url, Issue[].class);
-            issues = Arrays.stream(issueArray).toList();
+            ResponseEntity<Issue[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Issue[].class);
+            issues = Arrays.stream(response.getBody()).toList();
         }catch (RestClientException ex){
             System.out.println("Error while getting issues from project "+repo+" of owner "+owner+" : "+ex.getLocalizedMessage());
         }

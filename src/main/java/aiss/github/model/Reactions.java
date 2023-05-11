@@ -31,9 +31,9 @@ public class Reactions {
     private String url;
     @JsonProperty("total_count")
     private Integer totalCount;
-    @JsonProperty("upvotes")
+    @JsonProperty("+1")
     private Integer upvotes;
-    @JsonProperty("downvotes")
+    @JsonProperty("-1")
     private Integer downvotes;
     @JsonProperty("laugh")
     private Integer laugh;

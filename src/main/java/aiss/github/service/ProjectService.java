@@ -21,15 +21,19 @@ public class ProjectService {
     @Autowired
     IssueService issueService;
 
-    String token = "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";
+    String token = "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";
     String baseUrl = "https://api.github.com";
     HttpHeaders headers = new HttpHeaders();
 
     public Project getProject(String owner, String repoName){
         String url = "https://api.github.com/repos/"+owner+"/"+repoName;
+        headers.set("Authorization", "Bearer " + token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Project> entity = new HttpEntity<>(headers);
         Project project = null;
         try{
-            project = restTemplate.getForObject(url, Project.class);
+            ResponseEntity<Project> response = restTemplate.exchange(url, HttpMethod.GET,entity, Project.class);
+            project = response.getBody();
         } catch (RestClientException ex){
             System.out.println("Error while retrieving project of owner "+owner+ " and repo "+repoName+": "+ex.getLocalizedMessage());
         }

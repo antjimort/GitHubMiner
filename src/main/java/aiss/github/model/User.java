@@ -1,37 +1,20 @@
-
 package aiss.github.model;
 
+import com.fasterxml.jackson.annotation.*;
+
+import javax.annotation.Generated;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "login",
-    "id",
-    "node_id",
-    "avatar_url",
-    "gravatar_id",
-    "url",
-    "html_url",
-    "followers_url",
-    "following_url",
-    "gists_url",
-    "starred_url",
-    "subscriptions_url",
-    "organizations_url",
-    "repos_url",
-    "events_url",
-    "received_events_url",
-    "type",
-    "site_admin"
+        "id",
+        "login",
+        "name",
+        "avatar_url",
+        "html_url"
 })
+
 @Generated("jsonschema2pojo")
 public class User {
 
@@ -39,40 +22,72 @@ public class User {
     private String login;
     @JsonProperty("id")
     private Integer id;
+
+    @JsonIgnore
     @JsonProperty("node_id")
     private String nodeId;
     @JsonProperty("avatar_url")
     private String avatarUrl;
+    @JsonIgnore
     @JsonProperty("gravatar_id")
     private String gravatarId;
+    @JsonIgnore
     @JsonProperty("url")
     private String url;
     @JsonProperty("html_url")
     private String htmlUrl;
+
+    @JsonIgnore
     @JsonProperty("followers_url")
     private String followersUrl;
+    @JsonIgnore
     @JsonProperty("following_url")
     private String followingUrl;
+    @JsonIgnore
     @JsonProperty("gists_url")
     private String gistsUrl;
+    @JsonIgnore
     @JsonProperty("starred_url")
     private String starredUrl;
+    @JsonIgnore
     @JsonProperty("subscriptions_url")
     private String subscriptionsUrl;
+    @JsonIgnore
     @JsonProperty("organizations_url")
     private String organizationsUrl;
+    @JsonIgnore
     @JsonProperty("repos_url")
     private String reposUrl;
+    @JsonIgnore
     @JsonProperty("events_url")
     private String eventsUrl;
+    @JsonIgnore
     @JsonProperty("received_events_url")
     private String receivedEventsUrl;
+    @JsonIgnore
     @JsonProperty("type")
     private String type;
+    @JsonIgnore
     @JsonProperty("site_admin")
     private Boolean siteAdmin;
+
+    private String name;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+
+    public static User of(User user) {
+        if (user == null) {
+            return null;
+        }
+        User parsedUser = new User();
+        parsedUser.setId(user.getId());
+        parsedUser.setLogin(user.getLogin());
+        parsedUser.setName(user.getLogin());
+        parsedUser.setAvatarUrl(user.getAvatarUrl());
+        parsedUser.setHtmlUrl(user.getHtmlUrl());
+        return parsedUser;
+    }
 
     @JsonProperty("login")
     public String getLogin() {
@@ -264,92 +279,22 @@ public class User {
         this.additionalProperties.put(name, value);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(User.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("login");
-        sb.append('=');
-        sb.append(((this.login == null)?"<null>":this.login));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("nodeId");
-        sb.append('=');
-        sb.append(((this.nodeId == null)?"<null>":this.nodeId));
-        sb.append(',');
-        sb.append("avatarUrl");
-        sb.append('=');
-        sb.append(((this.avatarUrl == null)?"<null>":this.avatarUrl));
-        sb.append(',');
-        sb.append("gravatarId");
-        sb.append('=');
-        sb.append(((this.gravatarId == null)?"<null>":this.gravatarId));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("htmlUrl");
-        sb.append('=');
-        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
-        sb.append(',');
-        sb.append("followersUrl");
-        sb.append('=');
-        sb.append(((this.followersUrl == null)?"<null>":this.followersUrl));
-        sb.append(',');
-        sb.append("followingUrl");
-        sb.append('=');
-        sb.append(((this.followingUrl == null)?"<null>":this.followingUrl));
-        sb.append(',');
-        sb.append("gistsUrl");
-        sb.append('=');
-        sb.append(((this.gistsUrl == null)?"<null>":this.gistsUrl));
-        sb.append(',');
-        sb.append("starredUrl");
-        sb.append('=');
-        sb.append(((this.starredUrl == null)?"<null>":this.starredUrl));
-        sb.append(',');
-        sb.append("subscriptionsUrl");
-        sb.append('=');
-        sb.append(((this.subscriptionsUrl == null)?"<null>":this.subscriptionsUrl));
-        sb.append(',');
-        sb.append("organizationsUrl");
-        sb.append('=');
-        sb.append(((this.organizationsUrl == null)?"<null>":this.organizationsUrl));
-        sb.append(',');
-        sb.append("reposUrl");
-        sb.append('=');
-        sb.append(((this.reposUrl == null)?"<null>":this.reposUrl));
-        sb.append(',');
-        sb.append("eventsUrl");
-        sb.append('=');
-        sb.append(((this.eventsUrl == null)?"<null>":this.eventsUrl));
-        sb.append(',');
-        sb.append("receivedEventsUrl");
-        sb.append('=');
-        sb.append(((this.receivedEventsUrl == null)?"<null>":this.receivedEventsUrl));
-        sb.append(',');
-        sb.append("type");
-        sb.append('=');
-        sb.append(((this.type == null)?"<null>":this.type));
-        sb.append(',');
-        sb.append("siteAdmin");
-        sb.append('=');
-        sb.append(((this.siteAdmin == null)?"<null>":this.siteAdmin));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                " id=" + id +
+                ", login='" + login + '\'' +
+                ", name='" + name + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                '}';
+    }
 }

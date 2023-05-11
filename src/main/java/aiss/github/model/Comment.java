@@ -1,42 +1,38 @@
-
 package aiss.github.model;
 
+import com.fasterxml.jackson.annotation.*;
+
+import javax.annotation.Generated;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "url",
-    "html_url",
-    "issue_url",
-    "id",
-    "node_id",
-    "user",
-    "created_at",
-    "updated_at",
-    "author_association",
-    "body",
-    "reactions",
-    "performed_via_github_app"
+        "id",
+        "body",
+        "user",
+        "created_at",
+        "updated_at"
 })
+
 @Generated("jsonschema2pojo")
 public class Comment {
 
+    @JsonIgnore
     @JsonProperty("url")
     private String url;
+
+    @JsonIgnore
     @JsonProperty("html_url")
     private String htmlUrl;
+
+    @JsonIgnore
     @JsonProperty("issue_url")
     private String issueUrl;
     @JsonProperty("id")
     private Integer id;
+
+    @JsonIgnore
     @JsonProperty("node_id")
     private String nodeId;
     @JsonProperty("user")
@@ -45,18 +41,24 @@ public class Comment {
     private String createdAt;
     @JsonProperty("updated_at")
     private String updatedAt;
+    @JsonIgnore
+
     @JsonProperty("author_association")
     private String authorAssociation;
     @JsonProperty("body")
     private String body;
+    @JsonIgnore
+
     @JsonProperty("reactions")
     private Reactions reactions;
+    @JsonIgnore
+
     @JsonProperty("performed_via_github_app")
     private Object performedViaGithubApp;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    public static Comment of(Comment comment){
+    public static Comment of(Comment comment) {
         Comment parsedComment = new Comment();
         parsedComment.setId(comment.getId());
         parsedComment.setBody(comment.getBody());
@@ -202,7 +204,7 @@ public class Comment {
                 "id=" + id +
                 ", body='" + body + '\'' +
                 ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\''+
+                ", updatedAt='" + updatedAt + '\'' +
                 '}';
     }
 }
