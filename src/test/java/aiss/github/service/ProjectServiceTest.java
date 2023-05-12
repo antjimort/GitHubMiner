@@ -20,7 +20,7 @@ class ProjectServiceTest {
     @Test
     @DisplayName("Get project by its owner and repo name")
     void getProject() {
-        Project project = service.getProject("spring-projects", "spring-framework");
+        Project project = service.getProject("spring-projects", "spring-framework", 2, 20, 2);
         assertTrue(!project.equals(null), "The project is null");
         System.out.println(project);
     }

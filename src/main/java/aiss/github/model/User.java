@@ -9,10 +9,10 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "id",
-        "login",
+        "username",
         "name",
         "avatar_url",
-        "html_url"
+        "web_url"
 })
 
 @Generated("jsonschema2pojo")
@@ -73,6 +73,12 @@ public class User {
 
     private String name;
 
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("web_url")
+    private String webUrl;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -82,10 +88,10 @@ public class User {
         }
         User parsedUser = new User();
         parsedUser.setId(user.getId());
-        parsedUser.setLogin(user.getLogin());
+        parsedUser.setUsername(user.getLogin());
         parsedUser.setName(user.getLogin());
         parsedUser.setAvatarUrl(user.getAvatarUrl());
-        parsedUser.setHtmlUrl(user.getHtmlUrl());
+        parsedUser.setWebUrl(user.getHtmlUrl());
         return parsedUser;
     }
 
@@ -285,6 +291,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
     @Override

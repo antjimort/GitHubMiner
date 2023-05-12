@@ -16,7 +16,7 @@ public class GitHubController {
                                 @RequestParam(defaultValue = "5") Integer sinceCommits,
                                 @RequestParam(defaultValue = "20") Integer sinceIssues,
                                 @RequestParam(defaultValue = "2") Integer maxPages ){
-        Project project = projectService.getProject(owner, repoName);
+        Project project = projectService.getProject(owner, repoName, sinceCommits, sinceIssues, maxPages);
         return project;
     }
 

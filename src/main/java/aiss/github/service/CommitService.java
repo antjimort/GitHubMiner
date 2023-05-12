@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,61 +24,83 @@ public class CommitService {
     @Autowired
     RestTemplate restTemplate;
     String baseUrl = "https://api.github.com";
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 
 
-    public List<Commit> findAllCommitsFromRepo(String owner, String repo) {
+    public List<Commit> findAllCommitsFromRepo(String owner, String repo, Integer sinceCommits,
+                                                Integer maxPages) {
 
-        String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits";
+        LocalDate date = LocalDate.now().minusDays(sinceCommits);
+        String formattedDate = date.format(DateTimeFormatter.ISO_DATE);
+
+        int currentPage = 1;
+        int totalPages = maxPages;
 
         headers.set("Authorization", "Bearer " + token);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Commit> entity = new HttpEntity<>(headers);
 
-        List<Commit> commits = null;
+        List<Commit> commits = new ArrayList<>();
 
-        try {
-            ResponseEntity<Commit[]> response = restTemplate.exchange(url, HttpMethod.GET,entity, Commit[].class);
-            Commit[] commitArray = response.getBody();
-            commits = Arrays.stream(commitArray).toList();
-
-        } catch (RestClientException ex) {
-
+        try{
+            while(currentPage <= totalPages) {
+                String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits?since=" + formattedDate + "&page=" + currentPage;
+                ResponseEntity<Commit[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Commit[].class);
+                HttpHeaders responseHeaders = response.getHeaders();
+                String nextPageUrl = getNextPageUrl(responseHeaders);
+                commits.addAll(Arrays.stream(response.getBody()).toList());
+                if (nextPageUrl == null) {
+                    break;
+                }
+                currentPage++;
+            }
+        } catch (RestClientException ex){
             System.out.println("Error while retrieving commits from repository" + repo + ":"
                     + ex.getLocalizedMessage());
         }
 
-        List<Commit> parsedCommits = new ArrayList<>();
-        for(Commit c: commits){
-            Commit parsedCommit = Commit.of(c);
-            parsedCommits.add(parsedCommit);
-        }
+
+        List<Commit> parsedCommits = parseCommits(commits);
 
         return parsedCommits;
 
     }
 
-   /* public Commit findCommitFromRepo(String owner, String repo, String commitId) {
+    private static List<Commit> parseCommits(List<Commit> commits) {
+        List<Commit> parsedCommits = new ArrayList<>();
+        for(Commit c: commits){
+            Commit parsedCommit = Commit.of(c);
+            parsedCommits.add(parsedCommit);
+        }
+        return parsedCommits;
+    }
 
-        String url = baseUrl + "/repos/" + owner + "/" + repo + "/commits/" + commitId;
+    public static String getNextPageUrl(HttpHeaders headers) {
+        String result = null;
 
-        Commit commit = null;
+        // If there is no link header, return null
+        List<String> linkHeader = headers.get("Link");
+        if (linkHeader == null)
+            return null;
 
-        try {
-            commit = restTemplate.getForObject(url, Commit.class);
+        // If the header contains no links, return null
+        String links = linkHeader.get(0);
+        if (links == null || links.isEmpty())
+            return null;
 
-        } catch (RestClientException ex) {
-
-            System.out.println("Error while retrieving commit with id: " + commitId + ":"
-                    + ex.getLocalizedMessage());
+        // Return the next page URL or null if none.
+        for (String token : links.split(", ")) {
+            if (token.endsWith("rel=\"next\"")) {
+                // Found the next page. This should look something like
+                // <https://api.github.com/repos?page=3&per_page=100>; rel="next"
+                int idx = token.indexOf('>');
+                result = token.substring(1, idx);
+                break;
+            }
         }
 
-        Commit parsedCommit = Commit.of(commit);
-
-        return parsedCommit;
-    } */
-
-
+        return result;
+    }
 }

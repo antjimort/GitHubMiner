@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"id", "name", "html_url", "commits", "issues" })
+@JsonPropertyOrder({"id", "name", "web_url", "commits", "issues" })
 @Generated("jsonschema2pojo")
 public class Project {
 
@@ -189,11 +189,14 @@ public class Project {
 
     private List<Issue> issues;
 
+    @JsonProperty("web_url")
+    private String webUrl;
+
     public static Project of(Project project) {
         Project parsedProject = new Project();
         parsedProject.setId(project.getId());
         parsedProject.setName(project.getName());
-        parsedProject.setHtmlUrl(project.getHtmlUrl());
+        parsedProject.setWebUrl(project.getHtmlUrl());
         return  parsedProject;
     }
 
@@ -1051,6 +1054,14 @@ public class Project {
 
     public void setIssues(List<Issue> issues) {
         this.issues = issues;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
     @Override

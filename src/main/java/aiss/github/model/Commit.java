@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "sha",
+    "id",
     "title",
     "message",
     "author_name",
@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.*;
     "committer_name",
     "committer_email",
     "committed_date",
-    "html_url"
+    "web_url"
 })
 @Generated("jsonschema2pojo")
 public class Commit {
@@ -50,6 +50,9 @@ public class Commit {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
+    @JsonProperty("id")
+    private String id;
+
     private String title;
 
     private String message;
@@ -66,9 +69,12 @@ public class Commit {
 
     private String committed_date;
 
+    @JsonProperty("web_url")
+    private String webUrl;
+
     public static Commit of(Commit c) {
         Commit parsedCommit = new Commit();
-        parsedCommit.setSha(c.getSha());
+        parsedCommit.setId(c.getSha());
         parsedCommit.setTitle(getTitleFromMessage(c.getCommit().getMessage()));
         parsedCommit.setMessage(getMessageFromMessage(c.getCommit().getMessage()));
         parsedCommit.setAuthor_name(c.getCommit().getAuthor().getName());
@@ -77,7 +83,7 @@ public class Commit {
         parsedCommit.setCommitter_name(c.getCommit().getCommitter().getName());
         parsedCommit.setCommitter_email(c.getCommit().getCommitter().getEmail());
         parsedCommit.setCommitted_date(c.getCommit().getCommitter().getDate());
-        parsedCommit.setHtmlUrl(c.getHtmlUrl());
+        parsedCommit.setWebUrl(c.getHtmlUrl());
 
         return parsedCommit;
 
@@ -289,6 +295,22 @@ public class Commit {
 
     public void setCommitted_date(String committed_date) {
         this.committed_date = committed_date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
     @Override

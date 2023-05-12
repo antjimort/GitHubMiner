@@ -21,11 +21,11 @@ public class ProjectService {
     @Autowired
     IssueService issueService;
 
-    String token = "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";
-    String baseUrl = "https://api.github.com";
+    String token = "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";
     HttpHeaders headers = new HttpHeaders();
 
-    public Project getProject(String owner, String repoName){
+    public Project getProject(String owner, String repoName, Integer sinceCommits,
+                              Integer sinceIssues, Integer maxPages){
         String url = "https://api.github.com/repos/"+owner+"/"+repoName;
         headers.set("Authorization", "Bearer " + token);
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -38,8 +38,8 @@ public class ProjectService {
             System.out.println("Error while retrieving project of owner "+owner+ " and repo "+repoName+": "+ex.getLocalizedMessage());
         }
         Project parsedProject = Project.of(project);
-        parsedProject.setCommits(commitService.findAllCommitsFromRepo(owner, repoName));
-        parsedProject.setIssues(issueService.findAllIssuesFromRepo(owner, repoName));
+        parsedProject.setCommits(commitService.findAllCommitsFromRepo(owner, repoName, sinceCommits, maxPages));
+        parsedProject.setIssues(issueService.findAllIssuesFromRepo(owner, repoName, sinceIssues, maxPages));
         return parsedProject;
     }
 
