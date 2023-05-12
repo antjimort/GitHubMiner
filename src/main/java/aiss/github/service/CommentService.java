@@ -21,7 +21,7 @@ public class CommentService {
     RestTemplate restTemplate;
     String baseUrl = "https://api.github.com";
 
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 

@@ -21,7 +21,7 @@ public class ProjectService {
     @Autowired
     IssueService issueService;
 
-    String token = "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";
+    String token = "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";
     HttpHeaders headers = new HttpHeaders();
 
     public Project getProject(String owner, String repoName, Integer sinceCommits,
