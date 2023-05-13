@@ -4,8 +4,6 @@ package aiss.github.model;
 import java.util.List;
 import javax.annotation.Generated;
 
-import aiss.github.service.ProjectService;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -187,7 +185,7 @@ public class Project {
 
     private List<Commit> commits;
 
-    private List<Issue> issues;
+    private List<IssueResponse> issues;
 
     @JsonProperty("web_url")
     private String webUrl;
@@ -1048,11 +1046,11 @@ public class Project {
         this.commits = commits;
     }
 
-    public List<Issue> getIssues() {
+    public List<IssueResponse> getIssues() {
         return issues;
     }
 
-    public void setIssues(List<Issue> issues) {
+    public void setIssues(List<IssueResponse> issues) {
         this.issues = issues;
     }
 

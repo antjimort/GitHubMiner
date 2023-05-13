@@ -1,7 +1,7 @@
 package aiss.github.service;
 
-import aiss.github.model.Commit;
-import aiss.github.model.Issue;
+import aiss.github.model.IssueData;
+import aiss.github.model.IssueResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -9,13 +9,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,11 +23,11 @@ public class IssueService {
     CommentService commentService;
     String baseUrl = "https://api.github.com";
 
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 
-    public List<Issue> findAllIssuesFromRepo(String owner, String repo, Integer sinceIssues, Integer maxPages){
+    public List<IssueResponse> findAllIssuesFromRepo(String owner, String repo, Integer sinceIssues, Integer maxPages){
 
         LocalDate date = LocalDate.now().minusDays(sinceIssues);
         String formattedDate = date.format(DateTimeFormatter.ISO_DATE);
@@ -41,14 +37,14 @@ public class IssueService {
 
         headers.set("Authorization", "Bearer " + token);
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Issue> entity = new HttpEntity<>(headers);
+        HttpEntity<IssueData> entity = new HttpEntity<>(headers);
 
-        List<Issue> issues = new ArrayList<>();
+        List<IssueData> issues = new ArrayList<>();
 
         try {
             while (currentPage <= totalPages) {
                 String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues?since=" + formattedDate + "&page=" + currentPage;
-                ResponseEntity<Issue[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Issue[].class);
+                ResponseEntity<IssueData[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, IssueData[].class);
                 HttpHeaders responseHeaders = response.getHeaders();
                 String nextPageUrl = getNextPageUrl(responseHeaders);
                 setCommentsIntoIssues(owner, repo, issues, response);
@@ -62,24 +58,24 @@ public class IssueService {
             System.out.println("Error while getting issues from project " + repo + " of owner " + owner + " : " + ex.getLocalizedMessage());
         }
 
-        List<Issue> parsedIssues = parseIssues(issues);
+        List<IssueResponse> parsedIssues = parseIssues(issues);
 
         return parsedIssues;
     }
 
-    private static List<Issue> parseIssues(List<Issue> issues) {
-        List<Issue> parsedIssues = new ArrayList<>();
-        for(Issue issue: issues){
-            Issue parsedIssue = Issue.of(issue);
-            parsedIssue.setCommentsList(issue.getCommentsList());
+    private static List<IssueResponse> parseIssues(List<IssueData> issues) {
+        List<IssueResponse> parsedIssues = new ArrayList<>();
+        for(IssueData issue: issues){
+            IssueResponse parsedIssue = IssueResponse.of(issue);
+            parsedIssue.setComments(issue.getCommentList());
             parsedIssues.add(parsedIssue);
         }
         return parsedIssues;
     }
 
-    private void setCommentsIntoIssues(String owner, String repo, List<Issue> issues, ResponseEntity<Issue[]> response) {
-        for(Issue issue: response.getBody()){
-            issue.setCommentsList(commentService.findAllCommentsFromIssue(owner, repo, issue.getNumber().toString()));
+    private void setCommentsIntoIssues(String owner, String repo, List<IssueData> issues, ResponseEntity<IssueData[]> response) {
+        for(IssueData issue: response.getBody()){
+            issue.setCommentList(commentService.findAllCommentsFromIssue(owner, repo, issue.getNumber().toString()));
             issues.add(issue);
         }
     }

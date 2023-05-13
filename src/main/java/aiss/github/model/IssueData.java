@@ -28,7 +28,7 @@ import java.util.Map;
 })
 
 @Generated("jsonschema2pojo")
-public class Issue {
+public class IssueData {
 
     @JsonIgnore
     private String url;
@@ -97,28 +97,8 @@ public class Issue {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    private Integer upvotes;
-    private Integer downvotes;
-    private List<Comment> commentsList;
+    private List<Comment> commentList;
 
-    public static Issue of(Issue i) {
-        Issue parsedIssue = new Issue();
-        parsedIssue.setId(i.getId());
-        parsedIssue.setNumber(i.getNumber());
-        parsedIssue.setTitle(i.getTitle());
-        parsedIssue.setBody(i.getBody());
-        parsedIssue.setState(i.getState());
-        parsedIssue.setCreatedAt(i.getCreatedAt());
-        parsedIssue.setUpdatedAt(i.getUpdatedAt());
-        parsedIssue.setLabels(i.getLabels());
-        parsedIssue.setUpvotes(i.getReactions().getUpvotes());
-        parsedIssue.setDownvotes(i.getReactions().getDownvotes());
-        parsedIssue.setUser(User.of(i.getUser()));
-        parsedIssue.setAssignee(User.of(i.getAssignee()));
-        parsedIssue.setHtmlUrl(i.getHtmlUrl());
-        return parsedIssue;
-
-    }
 
     public String getUrl() {
         return url;
@@ -432,29 +412,12 @@ public class Issue {
         this.additionalProperties.put(name, value);
     }
 
-    public Integer getUpvotes() {
-        return upvotes;
+    public List<Comment> getCommentList() {
+        return commentList;
     }
 
-    public void setUpvotes(Integer upvotes) {
-        this.upvotes = upvotes;
-    }
-
-    public Integer getDownvotes() {
-        return downvotes;
-    }
-
-    public void setDownvotes(Integer downvotes) {
-        this.downvotes = downvotes;
-    }
-
-
-    public List<Comment> getCommentsList() {
-        return commentsList;
-    }
-
-    public void setCommentsList(List<Comment> commentsList) {
-        this.commentsList = commentsList;
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     @Override
@@ -469,11 +432,10 @@ public class Issue {
                 ", updatedAt='" + updatedAt + '\'' +
                 ", closedAt=" + closedAt +
                 ", labels=" + labels +
-                ", upvotes=" + upvotes +
-                ", downvotes=" + downvotes +
                 ", user=" + user +
                 ", assignee=" + assignee +
-                ", commentsList=" + commentsList +
                 '}';
     }
+
+
 }

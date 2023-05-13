@@ -1,14 +1,13 @@
 package aiss.github.service;
 
-import aiss.github.model.Issue;
+import aiss.github.model.IssueData;
+import aiss.github.model.IssueResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class IssueServiceTest {
@@ -21,7 +20,7 @@ class IssueServiceTest {
     void findAllIssuesFromRepo() {
         String owner = "spring-projects";
         String repo = "spring-framework";
-        List<Issue> issues = service.findAllIssuesFromRepo(owner, repo, 10, 1);
+        List<IssueResponse> issues = service.findAllIssuesFromRepo(owner, repo, 10, 1);
         System.out.println(issues.size());
         System.out.println(issues);
     }

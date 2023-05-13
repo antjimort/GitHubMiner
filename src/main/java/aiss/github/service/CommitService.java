@@ -24,7 +24,7 @@ public class CommitService {
     @Autowired
     RestTemplate restTemplate;
     String baseUrl = "https://api.github.com";
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 
