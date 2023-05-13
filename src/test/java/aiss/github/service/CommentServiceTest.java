@@ -15,38 +15,6 @@ class CommentServiceTest {
     @Autowired
     CommentService service;
 
-    /*
-    @DisplayName("Find comments from repo")
-    @Test
-    void findAllCommentsFromRepo() {
-        //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/comments
-
-        String owner = "DynxstyGIT";
-        String repo = "DIH4JDA";
-
-        List<Comment> comments = service.findAllCommentsFromRepo(owner, repo);
-        assertTrue(!comments.isEmpty(), "The list is empty");
-        System.out.println(comments);
-    }
-    */
-
-    /*
-    @DisplayName("Find comment from issue")
-    @Test
-    void findCommentFromIssue() {
-
-        //https://api.github.com/repos/DynxstyGIT/DIH4JDA/issues/comments/1124218931
-
-        String owner = "DynxstyGIT";
-        String repo = "DIH4JDA";
-        String commentId = "1124218931";
-
-        Comment comment = service.findCommentFromIssue(owner, repo, commentId);
-        assertTrue(!comment.equals(null), "The comment is null");
-        System.out.println(comment);
-    }
-     */
-
     @DisplayName("Find comments from issue")
     @Test
     void findAllCommentsFromIssue() {

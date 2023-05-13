@@ -21,61 +21,16 @@ public class CommentService {
     RestTemplate restTemplate;
     String baseUrl = "https://api.github.com";
 
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
-
-    /*
-    public List<Comment> findAllCommentsFromRepo(String owner, String repo){
-
-        String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + "comments";
-
-         List<Comment> comments = null;
-
-        try {
-
-            Comment[] commentArray = restTemplate.getForObject(url, Comment[].class);
-            comments = Arrays.stream(commentArray).toList();
-
-        } catch (RestClientException ex) {
-
-            System.out.println("Error while retrieving comments from the issues of repo: "  + repo + ":"
-                    + ex.getLocalizedMessage());
-        }
-
-        return comments;
-
-    }
-    */
-
-    /*
-    public Comment findCommentFromIssue(String owner, String repo, String commentId){
-
-        String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + "comments/" + commentId;
-
-        Comment comment = null;
-
-        try {
-            comment = restTemplate.getForObject(url, Comment.class);
-
-        } catch (RestClientException ex) {
-
-            System.out.println("Error while retrieving comment with id: " + commentId + ":"
-                    + ex.getLocalizedMessage());
-        }
-
-
-        return comment;
-    }
-    */
-
 
     public List<Comment> findAllCommentsFromIssue(String owner, String repo, String issueId){
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + issueId + "/comments";
         headers.set("Authorization", "Bearer " + token);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Comment> entity = new HttpEntity<>(headers);
-        List<Comment> comments = null;
+        List<Comment> comments = new ArrayList<>();
 
         try {
             ResponseEntity<Comment[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Comment[].class);

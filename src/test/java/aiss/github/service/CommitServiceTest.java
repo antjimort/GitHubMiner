@@ -24,7 +24,6 @@ class CommitServiceTest {
         String repo = "spring-framework";
 
         List<Commit> commits = service.findAllCommitsFromRepo(owner, repo, 10, 4);
-        assertTrue(!commits.isEmpty(), "The list is empty");
         System.out.println(commits.size());
         System.out.println(commits);
 

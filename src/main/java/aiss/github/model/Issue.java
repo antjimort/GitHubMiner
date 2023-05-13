@@ -83,14 +83,11 @@ public class Issue {
     private PullRequest pullRequest;
     @JsonProperty("body")
     private String body;
-
     @JsonIgnore
     private Object closedBy;
-
     @JsonIgnore
     @JsonProperty("reactions")
     private Reactions reactions;
-
     @JsonIgnore
     private String timelineUrl;
     @JsonIgnore
@@ -450,6 +447,7 @@ public class Issue {
     public void setDownvotes(Integer downvotes) {
         this.downvotes = downvotes;
     }
+
 
     public List<Comment> getCommentsList() {
         return commentsList;

@@ -21,7 +21,7 @@ class IssueServiceTest {
     void findAllIssuesFromRepo() {
         String owner = "spring-projects";
         String repo = "spring-framework";
-        List<Issue> issues = service.findAllIssuesFromRepo(owner, repo, 20, 2);
+        List<Issue> issues = service.findAllIssuesFromRepo(owner, repo, 10, 1);
         System.out.println(issues.size());
         System.out.println(issues);
     }

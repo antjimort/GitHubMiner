@@ -27,7 +27,7 @@ public class IssueService {
     CommentService commentService;
     String baseUrl = "https://api.github.com";
 
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 
@@ -58,9 +58,9 @@ public class IssueService {
                 }
                 currentPage++;
             }
-            } catch (RestClientException ex) {
-                System.out.println("Error while getting issues from project " + repo + " of owner " + owner + " : " + ex.getLocalizedMessage());
-            }
+        } catch (RestClientException ex) {
+            System.out.println("Error while getting issues from project " + repo + " of owner " + owner + " : " + ex.getLocalizedMessage());
+        }
 
         List<Issue> parsedIssues = parseIssues(issues);
 
@@ -71,6 +71,7 @@ public class IssueService {
         List<Issue> parsedIssues = new ArrayList<>();
         for(Issue issue: issues){
             Issue parsedIssue = Issue.of(issue);
+            parsedIssue.setCommentsList(issue.getCommentsList());
             parsedIssues.add(parsedIssue);
         }
         return parsedIssues;
