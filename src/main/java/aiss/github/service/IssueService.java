@@ -23,7 +23,7 @@ public class IssueService {
     CommentService commentService;
     String baseUrl = "https://api.github.com";
 
-    String token = "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";
+    String token = "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";
 
     HttpHeaders headers = new HttpHeaders();
 

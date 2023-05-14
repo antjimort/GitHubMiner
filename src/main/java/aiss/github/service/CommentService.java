@@ -1,6 +1,7 @@
 package aiss.github.service;
 
 import aiss.github.model.Comment;
+import aiss.github.utils.ProjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,15 @@ public class CommentService {
 
     @Autowired
     RestTemplate restTemplate;
-    String baseUrl = "https://api.github.com";
+    String baseUrl = "https://api.github.com/repos/";
 
-    String token = "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";
+
 
     HttpHeaders headers = new HttpHeaders();
 
     public List<Comment> findAllCommentsFromIssue(String owner, String repo, String issueId){
         String url = baseUrl + "/repos/" + owner + "/" + repo + "/issues/" + issueId + "/comments";
-        headers.set("Authorization", "Bearer " + token);
+        headers.set("Authorization", "Bearer " + ProjectUtils.TOKEN);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Comment> entity = new HttpEntity<>(headers);
         List<Comment> comments = new ArrayList<>();
