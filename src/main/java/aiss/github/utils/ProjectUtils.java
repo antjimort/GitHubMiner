@@ -5,7 +5,7 @@ public class ProjectUtils {
 
     }
 
-    public static final String TOKEN = "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";
+    public static final String TOKEN = "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";
 
     public static final String GITHUB_URL = "https://api.github.com/repos/";
 
