@@ -1,12 +1,11 @@
 package aiss.github.service;
 
 import aiss.github.model.Project;
+import aiss.github.service.impl.ProjectServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProjectServiceTest {
 
     @Autowired
-    ProjectService service;
+    ProjectServiceImpl service;
 
 
     @Test

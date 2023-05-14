@@ -5,5 +5,14 @@ public class ProjectUtils {
 
     }
 
-    public static final String TOKEN = "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";
+    public static final String TOKEN = "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";
+
+    public static final String GITHUB_URL = "https://api.github.com/repos/";
+
+    public static final String ISSUES = "/issues/";
+
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String BEARER = "Bearer ";
+
+    public static final String PAGE = "&page=";
 }

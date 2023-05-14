@@ -1,7 +1,7 @@
 package aiss.github.service;
 
-import aiss.github.model.IssueData;
 import aiss.github.model.IssueResponse;
+import aiss.github.service.impl.IssueServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 class IssueServiceTest {
 
     @Autowired
-    IssueService service;
+    IssueServiceImpl service;
 
     @Test
     @DisplayName("Get all issues from an existing repository")

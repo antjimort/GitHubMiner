@@ -1,7 +1,7 @@
 package aiss.github.controller;
 
 import aiss.github.model.Project;
-import aiss.github.service.ProjectService;
+import aiss.github.service.impl.ProjectServiceImpl;
 import aiss.github.service.impl.GitMinerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/github")
 public class GitHubController {
     @Autowired
-    private ProjectService projectService;
+    private ProjectServiceImpl projectService;
 
     @Autowired
     private GitMinerServiceImpl gitMinerServiceImpl;
